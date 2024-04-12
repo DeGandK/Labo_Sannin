@@ -1,0 +1,6 @@
+@Labo_Sannin_HostAddress = http://localhost:5257
+
+GET {{Labo_Sannin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
