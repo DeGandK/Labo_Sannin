@@ -17,14 +17,14 @@ namespace Labo_DAL.Services
 
         public ProductService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("KEVIN DE GAND");
+            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
 
         private Product Converter(SqlDataReader reader)
         {
             return new Product
             {
-                ProductID = (int)reader["ID"],
+                ProductID = (int)reader["ProductID"],
                 Nom = (string)reader["Nom"],
                 Description = (string)reader["Description"],
                 Image = (string)reader["Image"],
@@ -112,7 +112,7 @@ namespace Labo_DAL.Services
         public List<Product> GetAll()
         {
             List<Product> listeProduit = new List<Product>();
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
