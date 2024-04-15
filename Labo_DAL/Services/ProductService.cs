@@ -24,7 +24,7 @@ namespace Labo_DAL.Services
         {
             return new Product
             {
-                
+                ProductID = (int)reader["ProductID"],
                 Nom = (string)reader["Nom"],
                 Description = (string)reader["Description"],
                 Image = (string)reader["Image"],
