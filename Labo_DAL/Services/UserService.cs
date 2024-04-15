@@ -1,4 +1,5 @@
-﻿using Labo_Domain.Models;
+﻿using Labo_DAL.Repositories;
+using Labo_Domain.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Labo_DAL.Services
 {
-    public class UserService
+    public class UserService : IUserRepo
     {
         private string connectionString;
         public UserService(IConfiguration config)
         {
             connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
-        public void Register(string nom, string prenom, string email,string password,string telephone,string adresse)
+        public void Register(string nom, string prenom, string email, string password, string telephone, string adresse)
         {
             using (SqlConnection cnx = new SqlConnection(connectionString))
             {
@@ -126,17 +127,17 @@ namespace Labo_DAL.Services
             return list;
         }
 
-        public User GetById(int id) 
+        public User GetById(int id)
         {
             User u = new User();
-            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = connection.CreateCommand()) 
+                using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "SELECT * FROM User WHERE Id = @id";
                     command.Parameters.AddWithValue("id", id);
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader()) 
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -150,11 +151,13 @@ namespace Labo_DAL.Services
         }
         public void Update(User user)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command =connection.CreateCommand()) 
+                using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "UPDATE User SET Email = @email, Telephone = @tel, Adresse = @adresse WHERE Id = @id";
+
+                    command.Parameters.AddWithValue("Id", user.UserID);
                     command.Parameters.AddWithValue("email", user.Email);
                     command.Parameters.AddWithValue("tel", user.Telephone);
                     command.Parameters.AddWithValue("adresse", user.Adresse);
@@ -167,6 +170,6 @@ namespace Labo_DAL.Services
         }
 
 
-        
+
     }
 }
