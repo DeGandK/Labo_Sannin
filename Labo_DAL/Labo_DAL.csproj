@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Labo_Domain\Labo_Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Repositories\" />
   </ItemGroup>
 
