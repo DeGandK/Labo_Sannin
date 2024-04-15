@@ -1,5 +1,6 @@
 ﻿using Labo_BLL.Interfaces;
 using Labo_Sannin_API.Models;
+using Labo_Sannin_API.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +34,7 @@ namespace Labo_Sannin_API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _commandService.Create(form.ToDomain());
+            _commandService.Creat(form.ToDOMAIN());
             return Ok();
         }
     }
