@@ -29,6 +29,10 @@ namespace Labo_DAL.Services
                 DateCommande = (DateTime)reader["DateCommande"]
             };
         }
+        /// <summary>
+        /// Cette méthode retourne une liste de tous les commandes
+        /// </summary>
+        /// <returns></returns>
         public List<Command> GetAll()
         {
             List<Command> list = new List<Command>();
@@ -50,6 +54,12 @@ namespace Labo_DAL.Services
             }
             return list;
         }
+        //CRUD
+        /// <summary>
+        /// Cette méthode créer une commande et renvoie l'Id dont la commande a hérité
+        /// </summary>
+        /// <param name="Command"></param>
+        /// <returns></returns>
         public void Creat(Command cs)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

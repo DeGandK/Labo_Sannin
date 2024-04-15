@@ -15,7 +15,7 @@ namespace Labo_DAL.Services
         private string connectionString;
         public UserService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+            connectionString = config.GetConnectionString("JULIEN MONET");
         }
         public void Register(string nom, string prenom, string email, string password, string telephone, string adresse)
         {
