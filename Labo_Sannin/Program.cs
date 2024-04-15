@@ -14,9 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepo, DAL.UserService>();
-
 builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
-
 builder.Services.AddScoped<ICommandRepo, DAL.CommandService>();
 builder.Services.AddScoped<ICommandService, BLL.CommandService>();
 
