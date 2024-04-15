@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Labo_Domain.Models
 {
-    public class Categories
+    public class Command
     {
-        public int CategoryID { get; set; }
+        public int CommandID { get; set; }
         public int UserID { get; set; }
         public bool IsPaid {  get; set; }
         public DateTime DateCommande { get; set; }
