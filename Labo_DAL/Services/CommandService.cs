@@ -17,7 +17,7 @@ namespace Labo_DAL.Services
 
         public CommandService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("JULIEN MONET");
+            connectionString = config.GetConnectionString("KEVIN DE GAND");
         }
         private Command Converter(SqlDataReader reader)
         {
