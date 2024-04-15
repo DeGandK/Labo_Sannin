@@ -17,7 +17,7 @@ namespace Labo_DAL.Services
 
         public ProductService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("JULIEN MONET");
+            connectionString = config.GetConnectionString("KEVIN DE GAND");
         }
 
         private Product Converter(SqlDataReader reader)

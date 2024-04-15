@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Labo_DAL\Labo_DAL.csproj" />
     <ProjectReference Include="..\Labo_Domain\Labo_Domain.csproj" />
   </ItemGroup>
