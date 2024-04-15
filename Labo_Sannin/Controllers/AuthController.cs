@@ -52,12 +52,15 @@ namespace Labo_Sannin_API.Controllers
             }
         }
         [HttpPost("update")]
-        public IActionResult Update(UserUpdateForm form) 
+        public IActionResult Update([FromBody]UserUpdateForm form,[FromRoute] int id) 
         {
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                _userService.Update()
+                User u = form.ToDOMAIN();
+                u.UserID = id;
+                _userService.Update(u);
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -16,6 +16,15 @@ namespace Labo_Sannin_API.Tools
                 Image = form.Image,
                 CategorieID = form.CategorieID,
             };
-        } 
+        }
+        public static User ToDOMAIN(this UserUpdateForm form)
+        {
+            return new User
+            {
+                Email = form.Email,
+                Adresse = form.Adresse,
+                Telephone = form.Telephone
+            };
+        }
     }
 }
