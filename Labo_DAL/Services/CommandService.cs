@@ -16,7 +16,7 @@ namespace Labo_DAL.Services
 
         public CommandService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("default");
+            connectionString = config.GetConnectionString("JULIEN MONET");
         }
         private Command Converter(SqlDataReader reader)
         {
@@ -28,9 +28,9 @@ namespace Labo_DAL.Services
                 DateCommande = (DateTime)reader["DateCommande"]
             };
         }
-        public List<CommandService> GetAll()
+        public List<Command> GetAll()
         {
-            List<CommandService> list = new List<CommandService>();
+            List<Command> list = new List<Command>();
             using (SqlConnection connection = new SqlConnection())
             {
                 using (SqlCommand command = connection.CreateCommand())
@@ -49,22 +49,46 @@ namespace Labo_DAL.Services
             }
             return list;
         }
-        public void Creat(CommandService cs)
+        public void Creat(Command cs)
         {
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO Command (CommandID, UserID, IsPaid, DateCommande) " +
-                        "VALUES (@CmdID, @UID, @Paid, @DCmd)";
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO Command (CommandID, UserID, IsPaid, DateCommande) " +
+                            "VALUES (@CmdID, @UID, @Paid, @DCmd)";
 
-                cmd.Parameters.AddWithValue("CmdID", cs.CommandID);
-                cmd.Parameters.AddWithValue("UID", cs.UserID);
-                cmd.Parameters.AddWithValue("Paid", cs.IsPaid);
-                cmd.Parameters.AddWithValue("DCmd", cs.DateCommade);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
+                    cmd.Parameters.AddWithValue("CmdID", cs.CommandID);
+                    cmd.Parameters.AddWithValue("UID", cs.UserID);
+                    cmd.Parameters.AddWithValue("Paid", cs.IsPaid);
+                    cmd.Parameters.AddWithValue("DCmd", cs.DateCommande);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
             }
+        }
+        public List<Command> GetCommandsbyUserID(int UserID)
+        {
+            List<Command> list = new List<Command>();
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            { 
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Command c JOIN CommandRow cr ON c.ID = cr.CommandID WHERE cr.UserID = @id";
+                    cmd.Parameters.AddWithValue("id", UserID);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(Converter(reader));
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+            return list;
         }
     }
 }
