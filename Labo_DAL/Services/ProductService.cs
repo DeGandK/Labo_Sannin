@@ -24,7 +24,7 @@ namespace Labo_DAL.Services
         {
             return new Product
             {
-                ProductID = (int)reader["ID"],
+                
                 Nom = (string)reader["Nom"],
                 Description = (string)reader["Description"],
                 Image = (string)reader["Image"],
@@ -112,7 +112,7 @@ namespace Labo_DAL.Services
         public List<Product> GetAll()
         {
             List<Product> listeProduit = new List<Product>();
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
