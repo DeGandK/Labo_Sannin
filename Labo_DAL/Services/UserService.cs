@@ -14,7 +14,7 @@ namespace Labo_DAL.Services
         private string connectionString;
         public UserService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("default");
+            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
         public void Register(string nom, string prenom, string email,string password,string telephone,string adresse)
         {
@@ -125,6 +125,47 @@ namespace Labo_DAL.Services
             }
             return list;
         }
+
+        public User GetById(int id) 
+        {
+            User u = new User();
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            {
+                using (SqlCommand command = connection.CreateCommand()) 
+                {
+                    command.CommandText = "SELECT * FROM User WHERE Id = @id";
+                    command.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader()) 
+                    {
+                        if (reader.Read())
+                        {
+                            u = Converter(reader);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+            return u;
+        }
+        public void Update(User user)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            {
+                using (SqlCommand command =connection.CreateCommand()) 
+                {
+                    command.CommandText = "UPDATE User SET Email = @email, Telephone = @tel, Adresse = @adresse WHERE Id = @id";
+                    command.Parameters.AddWithValue("email", user.Email);
+                    command.Parameters.AddWithValue("tel", user.Telephone);
+                    command.Parameters.AddWithValue("adresse", user.Adresse);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+
 
         
     }
