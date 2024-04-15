@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Labo_DAL\Labo_DAL.csproj" />
     <ProjectReference Include="..\Labo_Domain\Labo_Domain.csproj" />
   </ItemGroup>
