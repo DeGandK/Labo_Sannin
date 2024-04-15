@@ -1,4 +1,7 @@
 ﻿CREATE TABLE [dbo].[Categories]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[CategorieID] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Nom] VARCHAR(50) NOT NULL,
+	[Description] VARCHAR(200) NOT NULL,
+	[TauxTVA] INT NOT NULL
 )

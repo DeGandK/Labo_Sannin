@@ -1,4 +1,9 @@
 ﻿CREATE TABLE [dbo].[CommandRow]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[LigneCommandeID] INT NOT NULL PRIMARY KEY IDENTITY,
+	[CommandID] INT NOT NULL,
+	[ProductID] INT NOT NULL,
+	[Quantite] INT NOT NULL, 
+    CONSTRAINT [FK_CommandRow_Product] FOREIGN KEY ([ProductID]) REFERENCES [Product]([ProductID]), 
+    CONSTRAINT [FK_CommandRow_Command] FOREIGN KEY ([CommandID]) REFERENCES [Command]([CommandID])
 )
