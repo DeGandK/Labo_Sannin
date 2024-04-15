@@ -1,4 +1,5 @@
-﻿using Labo_DAL.Repositories;
+﻿using Labo_BLL.Interfaces;
+using Labo_DAL.Repositories;
 using Labo_Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Labo_BLL.Services
 {
-    public class CommandService 
+    public class CommandService : ICommandService
     {
         private readonly ICommandRepo _commandRepo;
-        
+
         public CommandService(ICommandRepo commandRepo)
         {
             _commandRepo = commandRepo;
@@ -20,8 +21,8 @@ namespace Labo_BLL.Services
         {
             _commandRepo.Creat(c);
         }
-        public List<Command> GetAll() 
-        { 
+        public List<Command> GetAll()
+        {
             return _commandRepo.GetAll();
         }
         public List<Command> GetCommandsByUserID(int UserID)
