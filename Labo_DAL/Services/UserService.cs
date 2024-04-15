@@ -17,6 +17,15 @@ namespace Labo_DAL.Services
         {
             connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
+        /// <summary>
+        /// Methode pour enregistré un User
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="telephone"></param>
+        /// <param name="adresse"></param>
         public void Register(string nom, string prenom, string email, string password, string telephone, string adresse)
         {
             using (SqlConnection cnx = new SqlConnection(connectionString))
@@ -45,6 +54,13 @@ namespace Labo_DAL.Services
                 }
             }
         }
+        /// <summary>
+        /// Méthode pour ce connecter
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public User Login(string email, string password)
         {
             using (SqlConnection cnx = new SqlConnection(connectionString))
@@ -74,6 +90,11 @@ namespace Labo_DAL.Services
                 }
             }
         }
+        /// <summary>
+        /// Méthode pour hash le mots de passe
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public string GetHashPwd(string email)
         {
             using (SqlConnection cnx = new SqlConnection(connectionString))
@@ -92,7 +113,6 @@ namespace Labo_DAL.Services
                 }
             }
         }
-
         private User Converter(SqlDataReader reader)
         {
             return new User
@@ -105,6 +125,10 @@ namespace Labo_DAL.Services
                 Adresse = (string)reader["Adresse"]
             };
         }
+        /// <summary>
+        /// Méthode pour récupéré les utilisateurs
+        /// </summary>
+        /// <returns></returns>
         public List<User> GetAll()
         {
             List<User> list = new List<User>();
@@ -126,7 +150,11 @@ namespace Labo_DAL.Services
             }
             return list;
         }
-
+        /// <summary>
+        /// Méthode pour récupéré 1 utilisateur
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public User GetById(int id)
         {
             User u = new User();
@@ -149,6 +177,10 @@ namespace Labo_DAL.Services
             }
             return u;
         }
+        /// <summary>
+        /// Méthode pour mettre a jours les informations
+        /// </summary>
+        /// <param name="user"></param>
         public void Update(User user)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
