@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Labo_BLL\Labo_BLL.csproj" />
+    <ProjectReference Include="..\Labo_Domain\Labo_Domain.csproj" />
+  </ItemGroup>
+
 </Project>

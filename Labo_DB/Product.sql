@@ -4,8 +4,8 @@
 	[Nom] VARCHAR(50) NOT NULL,
 	[Description] VARCHAR(200) NOT NULL,
 	[Stock] INT NOT NULL,
-	[PrixHTVA] FLOAT NOT NULL,
+	[PrixHTVA] MONEY NOT NULL,
 	[Image] VARCHAR(MAX) NOT NULL,
 	[CategorieID] INT NOT NULL, 
-    CONSTRAINT [FK_Product_Categories] FOREIGN KEY ([ProductID]) REFERENCES [Categories]([CategorieId])
+    CONSTRAINT [FK_Product_Categories] FOREIGN KEY ([CategorieID]) REFERENCES [Categories]([CategorieId])
 )
