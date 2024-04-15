@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepo, DAL.UserService>();
 
+builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
+
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
    .AddNegotiate();
 
