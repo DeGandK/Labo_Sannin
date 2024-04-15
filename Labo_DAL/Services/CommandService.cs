@@ -1,4 +1,5 @@
-﻿using Labo_Domain.Models;
+﻿using Labo_DAL.Repositories;
+using Labo_Domain.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Labo_DAL.Services
 {
-    public class CommandService
+    public class CommandService : ICommandRepo
     {
         private string connectionString;
 
@@ -71,9 +72,9 @@ namespace Labo_DAL.Services
         public List<Command> GetCommandsbyUserID(int UserID)
         {
             List<Command> list = new List<Command>();
-            using (SqlConnection connection = new SqlConnection(connectionString)) 
-            { 
-                using(SqlCommand cmd = connection.CreateCommand())
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "SELECT * FROM Command c JOIN CommandRow cr ON c.ID = cr.CommandID WHERE cr.UserID = @id";
                     cmd.Parameters.AddWithValue("id", UserID);
