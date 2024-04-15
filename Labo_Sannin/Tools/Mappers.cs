@@ -26,5 +26,15 @@ namespace Labo_Sannin_API.Tools
                 Telephone = form.Telephone
             };
         }
+        public static Command ToDOMAIN(this CommandCreateForm form)
+        {
+            return new Command
+            {
+                CommandID = form.CommandID,
+                UserID = form.UserID,
+                IsPaid = form.IsPaid,
+                DateCommande = form.DateCommande 
+            };
+        }
     }
 }
