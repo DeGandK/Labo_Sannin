@@ -1,5 +1,6 @@
 ﻿using Labo_BLL.Interfaces;
 using Labo_Domain.Models;
+using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +43,23 @@ namespace Labo_Sannin_API.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                _userService.Register(form.Email, form.Password, form.Nickname);
+                _userService.Register(form.Nom,form.Prenom,form.Email, form.Password,form.Telephone,form.Adresse);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("update")]
+        public IActionResult Update([FromBody]UserUpdateForm form,[FromRoute] int id) 
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            try
+            {
+                User u = form.ToDOMAIN();
+                u.UserID = id;
+                _userService.Update(u);
                 return Ok();
             }
             catch (Exception ex)
