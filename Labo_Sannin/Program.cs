@@ -24,6 +24,7 @@ builder.Services.AddScoped<IUserService, BLL.UserService>();
 builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
 
 builder.Services.AddScoped<ICommandRepo, DAL.CommandService>();
+builder.Services.AddScoped<ICommandService, BLL.CommandService>();
 builder.Services.AddScoped<TokenGenerator>();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
