@@ -1,6 +1,8 @@
 using Labo_DAL.Repositories;
 using DAL = Labo_DAL.Services;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Labo_BLL.Interfaces;
+using BLL = Labo_BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddScoped<IUserRepo, DAL.UserService>();
 builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
 
 builder.Services.AddScoped<ICommandRepo, DAL.CommandService>();
+builder.Services.AddScoped<ICommandService, BLL.CommandService>();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
    .AddNegotiate();
