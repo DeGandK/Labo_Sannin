@@ -16,7 +16,7 @@ namespace Labo_DAL.Services
         
         public ProductService (IConfiguration config)
         {
-           connectionString = config.GetConnectionString("default");
+           connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
 
         //CRUD

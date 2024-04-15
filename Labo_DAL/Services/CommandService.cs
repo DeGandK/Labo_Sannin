@@ -16,7 +16,7 @@ namespace Labo_DAL.Services
 
         public CommandService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("default");
+            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
         private Command Converter(SqlDataReader reader)
         {
