@@ -18,7 +18,6 @@ namespace Labo_Sannin_API.Controllers
         {
             _userService = userService;
             _tokenGenerator = tokenGenerator;
-
         }
         [HttpPost("login")]
         public IActionResult Login(UserLoginForm loginInfo)
@@ -43,7 +42,7 @@ namespace Labo_Sannin_API.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                _userService.Register(form.Nom,form.Prenom,form.Email, form.Password,form.Telephone,form.Adresse);
+                _userService.Register(form.Nom,form.Prenom,form.Email,form.Password,form.Telephone,form.Adresse);
                 return Ok();
             }
             catch (Exception ex)

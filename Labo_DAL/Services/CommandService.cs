@@ -36,7 +36,7 @@ namespace Labo_DAL.Services
         public List<Command> GetAll()
         {
             List<Command> list = new List<Command>();
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {

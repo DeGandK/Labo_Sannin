@@ -32,9 +32,10 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    string sql = "INSERT INTO User (Nom, Prenom, Email, MDP, Telephone, Adresse) " +
+                    string sql = "INSERT INTO [User] (Nom, Prenom, Email, MDP, Telephone, Adresse) " +
                         "VALUES (@nom, @prenom, @email, @pwd, @tel, @adresse)";
                     cmd.CommandText = sql;
+
 
                     cmd.Parameters.AddWithValue("nom", nom);
                     cmd.Parameters.AddWithValue("prenom", prenom);
@@ -68,7 +69,7 @@ namespace Labo_DAL.Services
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
                     cmd.CommandText = "SELECT UserID, Email, IsAdmin " +
-                        "FROM User WHERE Email = @email AND Password = @pwd";
+                        "FROM [User] WHERE Email = @email AND MDP = @pwd";
 
                     cnx.Open();
 
@@ -81,7 +82,7 @@ namespace Labo_DAL.Services
                             return new User
                             {
                                 Email = (string)reader["Email"],
-                                UserID = (int)reader["Id"],
+                                UserID = (int)reader["UserID"],
                                 IsAdmin = (bool)reader["IsAdmin"]
                             };
                         }
@@ -101,8 +102,8 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Password " +
-                        "FROM User WHERE Email = @email";
+                    cmd.CommandText = "SELECT MDP " +
+                        "FROM [User] WHERE Email = @email";
 
                     cnx.Open();
 
@@ -136,7 +137,7 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM User";
+                    command.CommandText = "SELECT * FROM [User]";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -155,15 +156,15 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public User GetById(int id)
+        public User GetById(int UserID)
         {
             User u = new User();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM User WHERE Id = @id";
-                    command.Parameters.AddWithValue("id", id);
+                    command.CommandText = "SELECT * FROM [User] WHERE UserID = @id";
+                    command.Parameters.AddWithValue("id", UserID);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -187,9 +188,9 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE User SET Email = @email, Telephone = @tel, Adresse = @adresse WHERE Id = @id";
+                    command.CommandText = "UPDATE [User] SET Email = @email, Telephone = @tel, Adresse = @adresse WHERE UserID = @id";
 
-                    command.Parameters.AddWithValue("Id", user.UserID);
+                    command.Parameters.AddWithValue("id", user.UserID);
                     command.Parameters.AddWithValue("email", user.Email);
                     command.Parameters.AddWithValue("tel", user.Telephone);
                     command.Parameters.AddWithValue("adresse", user.Adresse);
