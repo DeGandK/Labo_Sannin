@@ -8,6 +8,4 @@
 	[Telephone] VARCHAR(50) NOT NULL,
 	[Adresse] VARCHAR(MAX) NOT NULL,
 	[IsAdmin] BIT NOT NULL DEFAULT 0,
-
-
 )

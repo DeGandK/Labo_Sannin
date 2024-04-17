@@ -11,8 +11,8 @@ namespace Labo_Sannin_API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService
-            _productService;
+        private readonly IProductService _productService;
+
         public ProductController(IProductService productService)
 
         {

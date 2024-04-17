@@ -46,7 +46,6 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.Connection = connection;
                     command.CommandText = "INSERT INTO Product (Nom,Description,Stock,PrixHTVA,Image,CategorieID) VALUES " +
                         "(@Nom,@Description,@Stock,@PrixHTVA,@Image,@CategorieID)";
 
@@ -88,7 +87,6 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.Connection = connection;
                     command.CommandText = "SELECT * FROM Product WHERE ProductID = @ProductId";
 
                     command.Parameters.AddWithValue("ProductID", id);
@@ -116,7 +114,6 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.Connection = connection;
                     command.CommandText = "SELECT * FROM Product";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -142,7 +139,6 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.Connection = connection;
                     command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
 
                     command.Parameters.AddWithValue("ID", id);
@@ -161,9 +157,8 @@ namespace Labo_DAL.Services
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.Connection = connection;
                     command.CommandText = "UPDATE Product SET Nom = @Nom, Description = @Description, Stock = @Stock, PrixHTVA = @PrixHTVA, Image = @Image, CategorieID = @CategorieID WHERE ProductID = @Id";
 
                     command.Parameters.AddWithValue("Nom", product.Nom);
