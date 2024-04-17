@@ -89,9 +89,9 @@ namespace Labo_DAL.Services
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM Product WHERE Id = @ProductId";
+                    command.CommandText = "SELECT * FROM Product WHERE ProductID = @ProductId";
 
-                    command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("ProductID", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
