@@ -4,8 +4,7 @@ namespace Labo_Sannin_API.Models
 {
     public class CommandCreateForm
     {
-        [Required]
-        public int CommandID { get; set; }
+        
         [Required]
         public int UserID { get; set; }
         [Required]

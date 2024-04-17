@@ -30,7 +30,6 @@ namespace Labo_Sannin_API.Tools
         {
             return new Command
             {
-                CommandID = form.CommandID,
                 UserID = form.UserID,
                 IsPaid = form.IsPaid,
                 DateCommande = form.DateCommande 

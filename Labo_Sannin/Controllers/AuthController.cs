@@ -66,5 +66,10 @@ namespace Labo_Sannin_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_userService.GetAll());
+        }
     }
 }

@@ -66,10 +66,9 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = "INSERT INTO Command (CommandID, UserID, IsPaid, DateCommande) " +
-                            "VALUES (@CmdID, @UID, @Paid, @DCmd)";
+                    cmd.CommandText = "INSERT INTO Command (UserID, IsPaid, DateCommande) " +
+                            "VALUES (@UID, @Paid, @DCmd)";
 
-                    cmd.Parameters.AddWithValue("CmdID", cs.CommandID);
                     cmd.Parameters.AddWithValue("UID", cs.UserID);
                     cmd.Parameters.AddWithValue("Paid", cs.IsPaid);
                     cmd.Parameters.AddWithValue("DCmd", cs.DateCommande);
