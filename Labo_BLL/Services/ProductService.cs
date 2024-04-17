@@ -1,4 +1,5 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_BLL.Models;
 using Labo_DAL.Repositories;
 using Labo_Domain.Models;
 using System;
@@ -12,9 +13,11 @@ namespace Labo_BLL.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepo _productRepo;
-        public ProductService(IProductRepo productRepo)
+        private readonly ICategoriesRepo _categoriesRepo;
+        public ProductService(IProductRepo productRepo, ICategoriesRepo categoriesRepo)
         {
             _productRepo = productRepo;
+            _categoriesRepo = categoriesRepo;
         }
 
         public int Create(Product product)
@@ -37,9 +40,17 @@ namespace Labo_BLL.Services
             return _productRepo.GetAll();
         }
 
-        public Product GetById(int id)
+        public CompleteProduct GetById(int id)
         {
-            return _productRepo.GetById(id);
+            Product p = _productRepo.GetById(id);
+            CompleteProduct cp = new CompleteProduct();
+            cp.ProductID = p.ProductID;
+            cp.Nom = p.Nom;
+            cp.Description = p.Description;
+            cp.PrixHTVA = p.PrixHTVA;
+            cp.Image = p.Image;
+            cp.categorie = _categoriesRepo.GetById(p.CategorieID);
+            return cp;
         }
     }
 }

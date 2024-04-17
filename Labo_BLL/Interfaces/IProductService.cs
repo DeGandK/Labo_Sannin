@@ -1,4 +1,5 @@
-﻿using Labo_Domain.Models;
+﻿using Labo_BLL.Models;
+using Labo_Domain.Models;
 
 namespace Labo_BLL.Interfaces
 {
@@ -7,7 +8,7 @@ namespace Labo_BLL.Interfaces
         int Create(Product product);
         void Delete(int id);
         IEnumerable<Product> GetAll();
-        Product GetById(int id);
+        CompleteProduct GetById(int id);
         void Update(Product product);
     }
 }

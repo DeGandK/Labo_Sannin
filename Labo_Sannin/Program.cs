@@ -21,6 +21,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserRepo, DAL.UserService>();
 builder.Services.AddScoped<IUserService, BLL.UserService>();
 builder.Services.AddScoped<IProductService, BLL.ProductService>();
+builder.Services.AddScoped<ICategoriesRepo, DAL.CategoriesServices>();
+builder.Services.AddScoped<ICategoriesService, BLL.CategoriesService>();
+
 builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
 builder.Services.AddScoped<ICommandRepo, DAL.CommandService>();
 builder.Services.AddScoped<ICommandService, BLL.CommandService>();
