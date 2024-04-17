@@ -15,7 +15,7 @@ namespace Labo_DAL.Services
         private string connectionString;
         public UserService(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("KEVIN DE GAND");
+            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
         }
         /// <summary>
         /// Methode pour enregistré un User
@@ -123,7 +123,8 @@ namespace Labo_DAL.Services
                 Prenom = (string)reader["Prenom"],
                 Email = (string)reader["Email"],
                 Telephone = (string)reader["Telephone"],
-                Adresse = (string)reader["Adresse"]
+                Adresse = (string)reader["Adresse"],
+                IsAdmin = (bool)reader["IsAdmin"]
             };
         }
         /// <summary>
