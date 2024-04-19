@@ -20,7 +20,7 @@ namespace Labo_Sannin_API.Controllers
             _tokenGenerator = tokenGenerator;
         }
         /// <summary>
-        /// Méthode pour ce log sur le site
+        /// Log sur le site
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Labo_Sannin_API.Controllers
             }
         }
         /// <summary>
-        /// Méthode pour s'enregistrer
+        /// Enregistrement
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace Labo_Sannin_API.Controllers
             }
         }
         /// <summary>
-        /// Méthode pour mettre a jour son prfil
+        /// Mise à jour du Profil
         /// </summary>
         /// <param name="form"></param>
         /// <param name="id"></param>

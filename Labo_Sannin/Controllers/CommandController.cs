@@ -24,11 +24,21 @@ namespace Labo_Sannin_API.Controllers
         {
             return Ok(_commandService.GetAll());
         }
+        /// <summary>
+        /// Récupération de commande par User
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
         [HttpGet("{UserID}")]
         public IActionResult GetCommandsbyUserID([FromRoute]int UserID) 
         {
             return Ok(_commandService.GetCommandsByUserID(UserID));
         }
+        /// <summary>
+        /// Création de commande
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Create([FromBody] CommandCreateForm form)
         {

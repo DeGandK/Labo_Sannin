@@ -13,16 +13,15 @@ namespace Labo_Sannin_API.Controllers
         {
             _commandRowService = commandRowService;
         }
-
+        /// <summary>
+        /// Récupération de la liste de commande
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetByCommandId(int id) 
         {
             return Ok(_commandRowService.GetByCommandId(id));
         }
-
-
-
-
-
     }
 }
