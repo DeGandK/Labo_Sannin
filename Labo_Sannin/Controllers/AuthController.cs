@@ -19,6 +19,11 @@ namespace Labo_Sannin_API.Controllers
             _userService = userService;
             _tokenGenerator = tokenGenerator;
         }
+        /// <summary>
+        /// Méthode pour ce log sur le site
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public IActionResult Login(UserLoginForm loginInfo)
         {
@@ -35,7 +40,11 @@ namespace Labo_Sannin_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Méthode pour s'enregistrer
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public IActionResult Register(UserRegisterForm form)
         {
@@ -50,6 +59,12 @@ namespace Labo_Sannin_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Méthode pour mettre a jour son prfil
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("update")]
         public IActionResult Update([FromBody]UserUpdateForm form,[FromRoute] int id) 
         {
@@ -66,6 +81,10 @@ namespace Labo_Sannin_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Récupération de tout les utilisateurs
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAll()
         {

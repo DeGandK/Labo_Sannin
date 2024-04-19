@@ -21,7 +21,6 @@ namespace Labo_Sannin_API.Tools
         {
             return new User
             {
-                Email = form.Email,
                 Adresse = form.Adresse,
                 Telephone = form.Telephone
             };
