@@ -88,6 +88,7 @@ namespace Labo_DAL.Services
                         }
                         else throw new InvalidOperationException("Compte utilisateur inexistant");
                     }
+                    cnx.Close();
                 }
             }
         }
