@@ -13,11 +13,18 @@ namespace Labo_DAL.Services
 {
     public class CommandService : ICommandRepo
     {
-        private string connectionString;
+        //private string connectionString;
 
-        public CommandService(IConfiguration config)
+        //public CommandService(IConfiguration config)
+        //{
+        //    connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+        //}
+
+        private SqlConnection _connection;
+
+        public CommandService(SqlConnection conn)
         {
-            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+            _connection = conn;
         }
         private Command Converter(SqlDataReader reader)
         {
@@ -36,7 +43,7 @@ namespace Labo_DAL.Services
         public List<Command> GetAll()
         {
             List<Command> list = new List<Command>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -62,7 +69,7 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public void Creat(Command cs)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
@@ -81,12 +88,12 @@ namespace Labo_DAL.Services
         public List<Command> GetCommandsbyUserID(int UserID)
         {
             List<Command> list = new List<Command>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Command c JOIN CommandRow cr ON c.ID = cr.CommandID WHERE cr.UserID = @id";
-                    cmd.Parameters.AddWithValue("id", UserID);
+                    cmd.CommandText = "SELECT * FROM Command WHERE UserID = @UserID";
+                    cmd.Parameters.AddWithValue("UserID", UserID);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

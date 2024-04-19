@@ -12,11 +12,19 @@ namespace Labo_DAL.Services
 {
     public class UserService : IUserRepo
     {
-        private string connectionString;
-        public UserService(IConfiguration config)
+        //private string connectionString;
+        //public UserService(IConfiguration config)
+        //{
+        //    connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+        //}
+
+        private SqlConnection _connection;
+
+        public UserService(SqlConnection conn)
         {
-            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+            _connection = conn;
         }
+
         /// <summary>
         /// Methode pour enregistré un User
         /// </summary>
@@ -28,7 +36,7 @@ namespace Labo_DAL.Services
         /// <param name="adresse"></param>
         public void Register(string nom, string prenom, string email, string password, string telephone, string adresse)
         {
-            using (SqlConnection cnx = new SqlConnection(connectionString))
+            using (SqlConnection cnx = _connection)
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
@@ -64,7 +72,7 @@ namespace Labo_DAL.Services
         /// <exception cref="InvalidOperationException"></exception>
         public User Login(string email, string password)
         {
-            using (SqlConnection cnx = new SqlConnection(connectionString))
+            using (SqlConnection cnx = _connection)
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
@@ -99,7 +107,7 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public string GetHashPwd(string email)
         {
-            using (SqlConnection cnx = new SqlConnection(connectionString))
+            using (SqlConnection cnx = _connection)
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
@@ -135,7 +143,7 @@ namespace Labo_DAL.Services
         public List<User> GetAll()
         {
             List<User> list = new List<User>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -161,7 +169,7 @@ namespace Labo_DAL.Services
         public User GetById(int UserID)
         {
             User u = new User();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -186,7 +194,7 @@ namespace Labo_DAL.Services
         /// <param name="user"></param>
         public void Update(User user)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
