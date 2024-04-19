@@ -10,8 +10,5 @@ namespace Labo_Sannin_API.Models
         [Required]
         public string Telephone { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
     }
 }
