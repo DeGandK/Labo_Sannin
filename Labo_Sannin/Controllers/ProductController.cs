@@ -18,13 +18,14 @@ namespace Labo_Sannin_API.Controllers
         {
             _productService = productService;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
             return Ok(_productService.GetAll());
         }
-
+        
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetById(int id)

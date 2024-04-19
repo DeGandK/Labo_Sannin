@@ -19,7 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient(sp => new SqlConnection(builder.Configuration.GetConnectionString("ISTVAN PRIGNOT")));
+builder.Services.AddTransient(sp => new SqlConnection(builder.Configuration.GetConnectionString("KEVIN DE GAND")));
 
 
 
