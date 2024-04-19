@@ -13,11 +13,18 @@ namespace Labo_DAL.Services
 {
     public class ProductService : IProductRepo
     {
-        private string connectionString;
+        //private string connectionString;
 
-        public ProductService(IConfiguration config)
+        //public ProductService(IConfiguration config)
+        //{
+        //    connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+        //}
+
+        private SqlConnection _connection;
+
+        public ProductService(SqlConnection conn)
         {
-            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+            _connection = conn;
         }
 
         private Product Converter(SqlDataReader reader)
@@ -42,7 +49,7 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public int Create(Product product)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -83,7 +90,7 @@ namespace Labo_DAL.Services
         public Product GetById(int id)
         {
             Product p = new Product();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -110,7 +117,7 @@ namespace Labo_DAL.Services
         public List<Product> GetAll()
         {
             List<Product> listeProduit = new List<Product>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -135,7 +142,7 @@ namespace Labo_DAL.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -155,7 +162,7 @@ namespace Labo_DAL.Services
         /// <param name="product"></param>
         public void Update(Product product)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {

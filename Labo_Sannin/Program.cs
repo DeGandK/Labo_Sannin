@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Labo_Sannin_API.Tools;
+using Microsoft.Data.SqlClient;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,15 +19,34 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient(sp => new SqlConnection(builder.Configuration.GetConnectionString("ISTVAN PRIGNOT")));
+
+
+
+
+
+
+
+
+
+
+
+
 builder.Services.AddScoped<IUserRepo, DAL.UserService>();
 builder.Services.AddScoped<IUserService, BLL.UserService>();
-builder.Services.AddScoped<IProductService, BLL.ProductService>();
+
 builder.Services.AddScoped<ICategoriesRepo, DAL.CategoriesServices>();
 builder.Services.AddScoped<ICategoriesService, BLL.CategoriesService>();
 
+builder.Services.AddScoped<ICommandRowRepo,DAL.CommandRowService>();
+builder.Services.AddScoped<ICommandRowService, BLL.CommandRowService>();
+
 builder.Services.AddScoped<IProductRepo, DAL.ProductService>();
+builder.Services.AddScoped<IProductService, BLL.ProductService>();
+
 builder.Services.AddScoped<ICommandRepo, DAL.CommandService>();
 builder.Services.AddScoped<ICommandService, BLL.CommandService>();
+
 builder.Services.AddScoped<TokenGenerator>();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)

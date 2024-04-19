@@ -12,11 +12,18 @@ namespace Labo_DAL.Services
 {
     public class CategoriesServices : ICategoriesRepo
     {
-        private string connectionString;
+        //private string connectionString;
 
-        public CategoriesServices(IConfiguration config)
+        //public CategoriesServices(IConfiguration config)
+        //{
+        //    connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+        //}
+
+        private SqlConnection _connection;
+
+        public CategoriesServices(SqlConnection conn)
         {
-            connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
+            _connection = conn;
         }
         private Categories Converter(SqlDataReader reader)
         {
@@ -36,7 +43,7 @@ namespace Labo_DAL.Services
         public Categories GetById(int id)
         {
             Categories categories = new Categories();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
@@ -62,7 +69,7 @@ namespace Labo_DAL.Services
         public List<Categories> GetAll()
         {
             List<Categories> categories = new List<Categories>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _connection)
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
