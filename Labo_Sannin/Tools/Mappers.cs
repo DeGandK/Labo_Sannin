@@ -34,5 +34,14 @@ namespace Labo_Sannin_API.Tools
                 DateCommande = form.DateCommande 
             };
         }
+        public static CommandRow ToDOMAIN(this CommandRowCreateForm form) 
+        {
+            return new CommandRow
+            {
+                CommandID = form.CommandID,
+                ProductID = form.ProductID,
+                Quantite = form.Quantite,
+            };
+        }
     }
 }

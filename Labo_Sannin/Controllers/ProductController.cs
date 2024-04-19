@@ -12,9 +12,7 @@ namespace Labo_Sannin_API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-
         public ProductController(IProductService productService)
-
         {
             _productService = productService;
         }
@@ -39,7 +37,6 @@ namespace Labo_Sannin_API.Controllers
         {
             return Ok(_productService.GetById(id));
         }
-
         /// <summary>
         /// Cette méthode permet de créer un produit
         /// </summary>
@@ -54,7 +51,6 @@ namespace Labo_Sannin_API.Controllers
             _productService.Create(form.ToDOMAIN());
             return Ok();
         }
-
         /// <summary>
         /// Permet de supprimer un produit en entrant son id en paramètre
         /// </summary>
@@ -67,7 +63,6 @@ namespace Labo_Sannin_API.Controllers
             _productService.Delete(id);
             return Ok();
         }
-
         /// <summary>
         /// Cette méthode permet de modifier un produit via son ID
         /// </summary>
@@ -87,15 +82,5 @@ namespace Labo_Sannin_API.Controllers
 
             return Ok();
         }
-
-        
-
-
-
-
-
-
-
-
     }
 }

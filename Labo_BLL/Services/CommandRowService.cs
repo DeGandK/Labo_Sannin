@@ -17,7 +17,10 @@ namespace Labo_BLL.Services
             _commandRowRepo = commandRowRepo;
         }
 
-
+        public void Create(CommandRow cr) 
+        {
+            _commandRowRepo.Create(cr);
+        }
 
         public List<CommandRow> GetByCommandId(int id)
         {

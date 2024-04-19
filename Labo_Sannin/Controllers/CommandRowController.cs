@@ -1,4 +1,7 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_Domain.Models;
+using Labo_Sannin_API.Models;
+using Labo_Sannin_API.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +25,18 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult GetByCommandId(int id) 
         {
             return Ok(_commandRowService.GetByCommandId(id));
+        }
+        /// <summary>
+        /// Création d'une ligne avec un produit
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Create(CommandRowCreateForm form) 
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            _commandRowService.Create(form.ToDOMAIN());
+            return Ok();
         }
     }
 }

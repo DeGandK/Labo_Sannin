@@ -13,7 +13,6 @@ namespace Labo_Sannin_API.Controllers
     {
         private readonly IUserService _userService;
         private readonly TokenGenerator _tokenGenerator;
-
         public AuthController(IUserService userService, TokenGenerator tokenGenerator)
         {
             _userService = userService;
@@ -28,7 +27,6 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult Login(UserLoginForm loginInfo)
         {
             if (!ModelState.IsValid) return BadRequest();
-
             try
             {
                 User connectedUser = _userService.Login(loginInfo.Email, loginInfo.Password);
