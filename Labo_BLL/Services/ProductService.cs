@@ -32,6 +32,7 @@ namespace Labo_BLL.Services
 
         public void Update(Product product)
         {
+            
             _productRepo.Update(product);
         }
 

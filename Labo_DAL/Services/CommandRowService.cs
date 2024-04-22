@@ -54,15 +54,16 @@ namespace Labo_DAL.Services
                 }
             }
         }
-        public List<CommandRow> GetByCommandId(int id)
+        public List<CommandRow> GetByCommandId(int id, int productid)
         {
             List<CommandRow> commandRows = new List<CommandRow>();
             using (SqlConnection cnx = _connection)
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    string sql = "SELECT Stock FROM Product WHERE ProductID = ProductID";
+                    string sql = "SELECT Stock FROM Product WHERE ProductID = @ProductID";
                     cmd.CommandText = sql;
+                    cmd.Parameters.AddWithValue("ProductID", productid);
                     cnx.Open();
                     int stock = (int)cmd.ExecuteScalar();
                     cnx.Close();
