@@ -68,21 +68,22 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="Command"></param>
         /// <returns></returns>
-        public void Creat(Command cs)
+        public int Create(Command cs)
         {
             using (SqlConnection connection = _connection)
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = "INSERT INTO Command (UserID, IsPaid, DateCommande) " +
+                    cmd.CommandText = "INSERT INTO Command (UserID, IsPaid, DateCommande) output inserted.CommandID " +
                             "VALUES (@UID, @Paid, @DCmd)";
 
                     cmd.Parameters.AddWithValue("UID", cs.UserID);
                     cmd.Parameters.AddWithValue("Paid", cs.IsPaid);
                     cmd.Parameters.AddWithValue("DCmd", cs.DateCommande);
                     connection.Open();
-                    cmd.ExecuteNonQuery();
+                    int id = (int)cmd.ExecuteScalar();
                     connection.Close();
+                    return id;
                 }
             }
         }

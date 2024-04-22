@@ -8,9 +8,5 @@ namespace Labo_Sannin_API.Models
         public int ProductID { get; set; }
         [Required]
         public int Quantite { get; set; }
-        [Required]
-        public int CommandID { get; set; }
-
-
     }
 }

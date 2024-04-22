@@ -48,7 +48,7 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public int Create(Product product)
+        public void Create(Product product)
         {
             using (SqlConnection connection = _connection)
             {
@@ -67,9 +67,8 @@ namespace Labo_DAL.Services
                     try
                     {
                         connection.Open();
-                        int createdId = (int)command.ExecuteScalar();
+                        command.ExecuteNonQuery();
                         connection.Close();
-                        return createdId;
                     }
                     catch (SqlException ex)
                     {
@@ -166,7 +165,7 @@ namespace Labo_DAL.Services
                 {
                     command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
 
-                    command.Parameters.AddWithValue("ID", id);
+                    command.Parameters.AddWithValue("Id", id);
 
                     connection.Open();
                     command.ExecuteNonQuery();

@@ -1,4 +1,5 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_BLL.Models;
 using Labo_DAL.Repositories;
 using Labo_Domain.Models;
 using System;
@@ -13,32 +14,38 @@ namespace Labo_BLL.Services
     {
         private readonly ICommandRowRepo _commandRowRepo;
         private readonly IProductRepo _productRepo;
-        public CommandRowService(ICommandRowRepo commandRowRepo, IProductRepo productRepo)
+        private readonly ICommandRepo _commandRepo;
+        public CommandRowService(ICommandRowRepo commandRowRepo, IProductRepo productRepo, ICommandRepo commandRepo)
         {
             _commandRowRepo = commandRowRepo;
             _productRepo = productRepo;
+            _commandRepo = commandRepo;
         }
 
-        public void Create(CommandRow cr) 
+        public void Create(CompleteCommand cr)
         {
             // Récuperer le stock
-            int stock = _productRepo.GetStock(cr.ProductID);
             // Récuperer la quantité
-            int quantite = cr.Quantite;
-            if (stock > quantite)
+            foreach (CommandRow item in cr.CommandRows)
             {
-                _commandRowRepo.Create(cr);
-            }
-            else
-            {
-                throw new Exception();
+                int stock = _productRepo.GetStock(item.ProductID);
+                int quantite = item.Quantite;
+                if (stock > quantite)
+                {
+                    _commandRepo.Create(cr);
+                    _commandRowRepo.Create(item);
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
 
         }
 
-        public List<CommandRow> GetByCommandId(int id, int productId)
+        public List<CommandRow> GetByCommandId(int id)
         {
-            return _commandRowRepo.GetByCommandId(id, productId);
+            return _commandRowRepo.GetByCommandId(id);
         }
 
 

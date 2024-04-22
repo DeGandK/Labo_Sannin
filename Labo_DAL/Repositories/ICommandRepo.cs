@@ -4,7 +4,7 @@ namespace Labo_DAL.Repositories
 {
     public interface ICommandRepo
     {
-        void Creat(Command cs);
+        int Create(Command cs);
         List<Command> GetAll();
         List<Command> GetCommandsbyUserID(int UserID);
         void ValiderCommande(int CommandId);

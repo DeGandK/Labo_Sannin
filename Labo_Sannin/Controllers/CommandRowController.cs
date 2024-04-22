@@ -22,21 +22,21 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetByCommandId(int id, int productId) 
+        public IActionResult GetByCommandId(int id)
         {
-            return Ok(_commandRowService.GetByCommandId(id, productId));
+            return Ok(_commandRowService.GetByCommandId(id));
         }
-        /// <summary>
-        /// Création d'une ligne avec un produit
-        /// </summary>
-        /// <param name="form"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult Create(CommandRowCreateForm form) 
-        {
-            if (!ModelState.IsValid) return BadRequest();
-            _commandRowService.Create(form.ToDOMAIN());
-            return Ok();
-        }
+        ///// <summary>
+        ///// Création d'une ligne avec un produit
+        ///// </summary>
+        ///// <param name="form"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public IActionResult Create(CommandRowCreateForm form) 
+        //{
+        //    if (!ModelState.IsValid) return BadRequest();
+        //    _commandRowService.Create(form);
+        //    return Ok();
+        //}
     }
 }

@@ -1,5 +1,7 @@
-﻿using Labo_Domain.Models;
+﻿using Labo_BLL.Models;
+using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
+using System.Runtime.CompilerServices;
 
 namespace Labo_Sannin_API.Tools
 {
@@ -38,9 +40,18 @@ namespace Labo_Sannin_API.Tools
         {
             return new CommandRow
             {
-                CommandID = form.CommandID,
                 ProductID = form.ProductID,
                 Quantite = form.Quantite,
+            };
+        }
+        public static CompleteCommand ToBLL(this CommandCreateForm form) 
+        {
+            return new CompleteCommand
+            {
+                CommandRows = new List<CommandRow>(),
+
+
+
             };
         }
     }

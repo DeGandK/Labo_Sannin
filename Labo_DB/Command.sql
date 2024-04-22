@@ -3,7 +3,7 @@
 	[CommandID] INT NOT NULL PRIMARY KEY IDENTITY,
 	[UserID] INT NOT NULL,
 	[IsPaid] BIT NOT NULL DEFAULT 0,
-	[DateCommande] DATETIME NOT NULL, 
+	[DateCommande] DATETIME2 NOT NULL, 
     CONSTRAINT [FK_Command_User] FOREIGN KEY ([UserID]) REFERENCES [User]([UserID]) 
 
 )
