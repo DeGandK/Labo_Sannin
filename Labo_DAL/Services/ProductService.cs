@@ -48,7 +48,7 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public int Create(Product product)
+        public void Create(Product product)
         {
             using (SqlConnection connection = _connection)
             {
@@ -67,9 +67,8 @@ namespace Labo_DAL.Services
                     try
                     {
                         connection.Open();
-                        int createdId = (int)command.ExecuteScalar();
+                        command.ExecuteNonQuery();
                         connection.Close();
-                        return createdId;
                     }
                     catch (SqlException ex)
                     {
@@ -166,7 +165,7 @@ namespace Labo_DAL.Services
                 {
                     command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
 
-                    command.Parameters.AddWithValue("ID", id);
+                    command.Parameters.AddWithValue("Id", id);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -186,12 +185,17 @@ namespace Labo_DAL.Services
                 {
                     command.CommandText = "UPDATE Product SET Nom = @Nom, Description = @Description, Stock = @Stock, PrixHTVA = @PrixHTVA, Image = @Image, CategorieID = @CategorieID WHERE ProductID = @Id";
 
+                    command.Parameters.AddWithValue("Id", product.ProductID);
                     command.Parameters.AddWithValue("Nom", product.Nom);
                     command.Parameters.AddWithValue("Description", product.Description);
                     command.Parameters.AddWithValue("Stock", product.Stock);
                     command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
                     command.Parameters.AddWithValue("Image", product.Image);
                     command.Parameters.AddWithValue("CategorieID", product.CategorieID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
         }

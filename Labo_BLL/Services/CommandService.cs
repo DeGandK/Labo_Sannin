@@ -1,4 +1,5 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_BLL.Models;
 using Labo_DAL.Repositories;
 using Labo_Domain.Models;
 using Microsoft.Identity.Client;
@@ -13,15 +14,34 @@ namespace Labo_BLL.Services
     public class CommandService : ICommandService
     {
         private readonly ICommandRepo _commandRepo;
+        private readonly IProductRepo _productRepo;
+        private readonly ICommandRowRepo _commandRowRepo;
 
-        public CommandService(ICommandRepo commandRepo)
+        public CommandService(ICommandRepo commandRepo,IProductRepo productRepo,ICommandRowRepo commandRowRepo)
         {
             _commandRepo = commandRepo;
+            _productRepo = productRepo;
+            _commandRowRepo = commandRowRepo;
         }
-        
-        public void Creat(Command c)
+
+        public void Create(CompleteCommand cr)
         {
-            _commandRepo.Creat(c);
+            int id = _commandRepo.Create(cr);
+            foreach (CommandRow item in cr.CommandRows)
+            {
+                int stock = _productRepo.GetStock(item.ProductID);
+                int quantite = item.Quantite;
+                if (stock > quantite)
+                {
+                    item.CommandID = id;
+                    _commandRowRepo.Create(item);
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+
         }
         public List<Command> GetAll()
         {
@@ -31,5 +51,6 @@ namespace Labo_BLL.Services
         {
             return _commandRepo.GetCommandsbyUserID(UserID);
         }
+        
     }
 }

@@ -86,7 +86,14 @@ namespace Labo_Sannin_API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_userService.GetAll());
+            try
+            {
+                return Ok(_userService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

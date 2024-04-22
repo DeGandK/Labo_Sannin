@@ -11,5 +11,7 @@ namespace Labo_Sannin_API.Models
         public bool IsPaid { get; set; }
         [Required]
         public DateTime DateCommande { get; set; }
+        [Required]
+        public List<CommandRowCreateForm> produitChoisis { get; set; }
     }
 }

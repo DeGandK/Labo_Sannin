@@ -1,4 +1,5 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +12,11 @@ namespace Labo_Sannin_API.Controllers
     public class CommandController : ControllerBase
     {
         private readonly ICommandService _commandService;
-        public CommandController(ICommandService commandService)
+        private readonly ICommandRowService _commandRowService;
+        public CommandController(ICommandService commandService,ICommandRowService commandRowService)
         {
             _commandService = commandService;
+            _commandRowService = commandRowService;
         }
         /// <summary>
         /// Fournit la liste des Commandes
@@ -40,11 +43,11 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Create([FromBody] CommandCreateForm form)
+        public IActionResult Create([FromBody]CommandCreateForm form)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _commandService.Creat(form.ToDOMAIN());
+            _commandService.Create(form.ToBLL());
             return Ok();
         }
     }
