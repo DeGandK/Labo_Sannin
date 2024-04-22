@@ -30,7 +30,7 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="UserID"></param>
         /// <returns></returns>
         [HttpGet("{UserID}")]
-        public IActionResult GetCommandsbyUserID([FromRoute]int UserID) 
+        public IActionResult GetCommandsbyUserID([FromRoute] int UserID)
         {
             return Ok(_commandService.GetCommandsByUserID(UserID));
         }
@@ -47,5 +47,7 @@ namespace Labo_Sannin_API.Controllers
             _commandService.Creat(form.ToDOMAIN());
             return Ok();
         }
+        [HttpGet("{CommandId}")]
+        public IActionResult 
     }
 }

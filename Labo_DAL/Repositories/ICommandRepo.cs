@@ -7,5 +7,7 @@ namespace Labo_DAL.Repositories
         void Creat(Command cs);
         List<Command> GetAll();
         List<Command> GetCommandsbyUserID(int UserID);
+        void ValiderCommande(int CommandId);
+        void DeleteCommande(int CommandId);
     }
 }

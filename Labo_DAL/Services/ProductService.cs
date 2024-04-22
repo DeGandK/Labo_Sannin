@@ -186,12 +186,17 @@ namespace Labo_DAL.Services
                 {
                     command.CommandText = "UPDATE Product SET Nom = @Nom, Description = @Description, Stock = @Stock, PrixHTVA = @PrixHTVA, Image = @Image, CategorieID = @CategorieID WHERE ProductID = @Id";
 
+                    command.Parameters.AddWithValue("Id", product.ProductID);
                     command.Parameters.AddWithValue("Nom", product.Nom);
                     command.Parameters.AddWithValue("Description", product.Description);
                     command.Parameters.AddWithValue("Stock", product.Stock);
                     command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
                     command.Parameters.AddWithValue("Image", product.Image);
                     command.Parameters.AddWithValue("CategorieID", product.CategorieID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
         }

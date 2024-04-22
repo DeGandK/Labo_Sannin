@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -106,6 +107,45 @@ namespace Labo_DAL.Services
                 }
             }
             return list;
+        }
+
+        /// <summary>
+        /// Cette méthode sert à Valider une commande si celle ci a bien été payée
+        /// </summary>
+        /// <param name="CommandId"></param>
+        public void ValiderCommande(int CommandId)
+        {
+            using(SqlConnection conn = _connection)
+            {
+                using(SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE Command SET IsPaid = 1 WHERE CommandId = @CommandId";
+                    cmd.Parameters.AddWithValue("CommandId", CommandId);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cette méthode sert à supprimer la commande si elle n'a pas été payée
+        /// </summary>
+        /// <param name="commandId"></param>
+        public void DeleteCommande(int CommandId)
+        {
+            using(SqlConnection conn = _connection)
+            {
+                using(SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE * FROM Command WHERE CommandID = @CommandId";
+                    cmd.Parameters.AddWithValue("CommandId", CommandId);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
         }
     }
 }
