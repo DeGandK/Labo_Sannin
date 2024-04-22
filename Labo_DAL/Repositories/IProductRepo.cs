@@ -8,7 +8,9 @@ namespace Labo_DAL.Repositories
         void Delete(int id);
         List<Product> GetAll();
         Product GetById(int id);
-        public int GetStock(int id);
+        int GetStock(int id);
         void Update(Product product);
+
+       
     }
 }

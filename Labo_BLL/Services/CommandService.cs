@@ -1,6 +1,7 @@
 ﻿using Labo_BLL.Interfaces;
 using Labo_DAL.Repositories;
 using Labo_Domain.Models;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Labo_BLL.Services
         {
             _commandRepo = commandRepo;
         }
+        
         public void Creat(Command c)
         {
             _commandRepo.Creat(c);

@@ -22,9 +22,9 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetByCommandId(int id) 
+        public IActionResult GetByCommandId(int id, int productId) 
         {
-            return Ok(_commandRowService.GetByCommandId(id));
+            return Ok(_commandRowService.GetByCommandId(id, productId));
         }
         /// <summary>
         /// Création d'une ligne avec un produit
