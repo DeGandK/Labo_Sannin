@@ -85,6 +85,7 @@ namespace Labo_DAL.Services
                     cmd.Parameters.AddWithValue("pwd", password);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        cnx.Close();
                         if (reader.Read())
                         {
                             return new User
@@ -96,7 +97,7 @@ namespace Labo_DAL.Services
                         }
                         else throw new InvalidOperationException("Compte utilisateur inexistant");
                     }
-                    cnx.Close();
+                    
                 }
             }
         }
