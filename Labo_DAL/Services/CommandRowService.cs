@@ -49,8 +49,6 @@ namespace Labo_DAL.Services
                     cnx.Open();
                     cmd.ExecuteNonQuery();
                     cnx.Close();
-
-
                 }
             }
         }
