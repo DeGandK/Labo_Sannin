@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(
     {
         c.SwaggerDoc("v1", new OpenApiInfo
         {
-            Title = "IMDB Api",
+            Title = "BEL Api",
             Description = "Api Boutique En Ligne",
             Contact = new OpenApiContact
             {

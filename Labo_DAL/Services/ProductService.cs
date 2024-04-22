@@ -111,6 +111,23 @@ namespace Labo_DAL.Services
             }
             return p;
         }
+        public int GetStock(int id)
+        {
+            int stock;
+            using (SqlConnection connection = _connection)
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT Stock FROM Product WHERE ProductID = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductID", id);
+                    connection.Open();
+                    stock = (int)cmd.ExecuteScalar();
+                    connection.Close();
+                }
+            }
+            return stock;
+        }
+
         /// <summary>
         /// Cette méthode retourne une liste de tous les produits
         /// </summary>
@@ -178,5 +195,6 @@ namespace Labo_DAL.Services
                 }
             }
         }
+
     }
 }
