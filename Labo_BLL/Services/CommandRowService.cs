@@ -12,9 +12,11 @@ namespace Labo_BLL.Services
     public class CommandRowService : ICommandRowService
     {
         private readonly ICommandRowRepo _commandRowRepo;
-        public CommandRowService(ICommandRowRepo commandRowRepo)
+        private readonly IProductRepo _productRepo;
+        public CommandRowService(ICommandRowRepo commandRowRepo, IProductRepo productRepo)
         {
             _commandRowRepo = commandRowRepo;
+            _productRepo = productRepo;
         }
 
         public void Create(CommandRow cr) 
