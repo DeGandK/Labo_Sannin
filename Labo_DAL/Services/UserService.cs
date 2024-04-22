@@ -72,32 +72,32 @@ namespace Labo_DAL.Services
         /// <exception cref="InvalidOperationException"></exception>
         public User Login(string email, string password)
         {
-            using (SqlConnection cnx = _connection)
+
+            using (SqlCommand cmd = _connection.CreateCommand())
             {
-                using (SqlCommand cmd = cnx.CreateCommand())
+                cmd.CommandText = "SELECT UserID, Email, IsAdmin " +
+                    "FROM [User] WHERE Email = @email AND MDP = @pwd";
+
+                _connection.Open();
+
+                cmd.Parameters.AddWithValue("email", email);
+                cmd.Parameters.AddWithValue("pwd", password);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    cmd.CommandText = "SELECT UserID, Email, IsAdmin " +
-                        "FROM [User] WHERE Email = @email AND MDP = @pwd";
-
-                    cnx.Open();
-
-                    cmd.Parameters.AddWithValue("email", email);
-                    cmd.Parameters.AddWithValue("pwd", password);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        return new User
                         {
-                            return new User
-                            {
-                                Email = (string)reader["Email"],
-                                UserID = (int)reader["UserID"],
-                                IsAdmin = (bool)reader["IsAdmin"]
-                            };
-                        }
-                        else throw new InvalidOperationException("Compte utilisateur inexistant");
+                            Email = (string)reader["Email"],
+                            UserID = (int)reader["UserID"],
+                            IsAdmin = (bool)reader["IsAdmin"]
+                        };
+
                     }
-                    cnx.Close();
+                    else throw new InvalidOperationException("Compte utilisateur inexistant");
                 }
+
             }
         }
         /// <summary>
@@ -107,21 +107,20 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public string GetHashPwd(string email)
         {
-            using (SqlConnection cnx = _connection)
+
+            using (SqlCommand cmd = _connection.CreateCommand())
             {
-                using (SqlCommand cmd = cnx.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT MDP " +
-                        "FROM [User] WHERE Email = @email";
+                cmd.CommandText = "SELECT MDP " +
+                    "FROM [User] WHERE Email = @email";
 
-                    cnx.Open();
+                _connection.Open();
 
-                    cmd.Parameters.AddWithValue("email", email);
-                    string pwd = (string)cmd.ExecuteScalar();
-                    cnx.Close();
-                    return pwd;
-                }
+                cmd.Parameters.AddWithValue("email", email);
+                string pwd = (string)cmd.ExecuteScalar();
+                _connection.Close();
+                return pwd;
             }
+
         }
         private User Converter(SqlDataReader reader)
         {
