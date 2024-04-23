@@ -36,7 +36,7 @@ namespace Labo_DAL.Services
             };
         }
         /// <summary>
-        /// Méthode pour récupéré une catégorie en particulier
+        /// Méthode pour récupérer une catégorie en particulier
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

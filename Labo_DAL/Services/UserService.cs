@@ -26,7 +26,7 @@ namespace Labo_DAL.Services
         }
 
         /// <summary>
-        /// Methode pour enregistré un User
+        /// Méthode pour enregistrer un User
         /// </summary>
         /// <param name="nom"></param>
         /// <param name="prenom"></param>
@@ -64,7 +64,7 @@ namespace Labo_DAL.Services
             }
         }
         /// <summary>
-        /// Méthode pour ce connecter
+        /// Méthode pour se connecter
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
@@ -99,7 +99,7 @@ namespace Labo_DAL.Services
             }
         }
         /// <summary>
-        /// Méthode pour hash le mots de passe
+        /// Méthode pour hash le mot de passe
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ namespace Labo_DAL.Services
             };
         }
         /// <summary>
-        /// Méthode pour récupéré les utilisateurs
+        /// Méthode pour récupérer les utilisateurs
         /// </summary>
         /// <returns></returns>
         public List<User> GetAll()
@@ -159,7 +159,7 @@ namespace Labo_DAL.Services
             return list;
         }
         /// <summary>
-        /// Méthode pour récupéré 1 utilisateur
+        /// Méthode pour récupérer 1 utilisateur
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -186,7 +186,7 @@ namespace Labo_DAL.Services
             return u;
         }
         /// <summary>
-        /// Méthode pour mettre a jours les informations
+        /// Méthode pour mettre à jour les informations
         /// </summary>
         /// <param name="user"></param>
         public void Update(User user)
