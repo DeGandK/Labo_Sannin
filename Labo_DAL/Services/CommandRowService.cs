@@ -29,6 +29,7 @@ namespace Labo_DAL.Services
         {
             return new CommandRow
             {
+                LigneCommandID = (int)reader["LigneCommandID"],
                 CommandID = (int)reader["CommandID"],
                 ProductID = (int)reader["ProductID"],
                 Quantite = (int)reader["Quantite"]

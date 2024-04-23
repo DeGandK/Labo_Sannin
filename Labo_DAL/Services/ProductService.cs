@@ -118,16 +118,16 @@ namespace Labo_DAL.Services
         public int GetStock(int id)
         {
             int stock = 0;
-            
-                using (SqlCommand cmd = _connection.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT Stock FROM Product WHERE ProductID = @ProductID";
-                    cmd.Parameters.AddWithValue("ProductID", id);
-                    _connection.Open();
-                    stock = (int)cmd.ExecuteScalar();
-                    _connection.Close();
-                }
-            
+
+            using (SqlCommand cmd = _connection.CreateCommand())
+            {
+                cmd.CommandText = "SELECT Stock FROM Product WHERE ProductID = @ProductID";
+                cmd.Parameters.AddWithValue("ProductID", id);
+                _connection.Open();
+                stock = (int)cmd.ExecuteScalar();
+                _connection.Close();
+            }
+
             return stock;
         }
 
@@ -163,19 +163,16 @@ namespace Labo_DAL.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            using (SqlConnection connection = _connection)
-            {
-                using (SqlCommand command = connection.CreateCommand())
+                using (SqlCommand command = _connection.CreateCommand())
                 {
                     command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
 
                     command.Parameters.AddWithValue("Id", id);
 
-                    connection.Open();
+                    _connection.Open();
                     command.ExecuteNonQuery();
-                    connection.Close();
+                    _connection.Close();
                 }
-            }
         }
         /// <summary>
         /// Cette méthode prend un produit en paramètre et permet de modifier ses données
@@ -183,26 +180,22 @@ namespace Labo_DAL.Services
         /// <param name="product"></param>
         public void Update(Product product)
         {
-            using (SqlConnection connection = _connection)
+            using (SqlCommand command = _connection.CreateCommand())
             {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "UPDATE Product SET Nom = @Nom, Description = @Description, Stock = @Stock, PrixHTVA = @PrixHTVA, Image = @Image, CategorieID = @CategorieID WHERE ProductID = @Id";
+                command.CommandText = "UPDATE Product SET Nom = @Nom, Description = @Description, Stock = @Stock, PrixHTVA = @PrixHTVA, Image = @Image, CategorieID = @CategorieID WHERE ProductID = @Id";
 
-                    command.Parameters.AddWithValue("Id", product.ProductID);
-                    command.Parameters.AddWithValue("Nom", product.Nom);
-                    command.Parameters.AddWithValue("Description", product.Description);
-                    command.Parameters.AddWithValue("Stock", product.Stock);
-                    command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
-                    command.Parameters.AddWithValue("Image", product.Image);
-                    command.Parameters.AddWithValue("CategorieID", product.CategorieID);
+                command.Parameters.AddWithValue("Id", product.ProductID);
+                command.Parameters.AddWithValue("Nom", product.Nom);
+                command.Parameters.AddWithValue("Description", product.Description);
+                command.Parameters.AddWithValue("Stock", product.Stock);
+                command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
+                command.Parameters.AddWithValue("Image", product.Image);
+                command.Parameters.AddWithValue("CategorieID", product.CategorieID);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
+                _connection.Open();
+                command.ExecuteNonQuery();
+                _connection.Close();
             }
         }
-
     }
 }
