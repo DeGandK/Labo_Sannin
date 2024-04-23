@@ -116,17 +116,17 @@ namespace Labo_DAL.Services
         /// <param name="CommandId"></param>
         public void ValiderCommande(int CommandId)
         {
-            using(SqlConnection conn = _connection)
+
+
+            using (SqlCommand cmd = _connection.CreateCommand())
             {
-                using(SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "UPDATE Command SET IsPaid = 1 WHERE CommandId = @CommandId";
-                    cmd.Parameters.AddWithValue("CommandId", CommandId);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
+                cmd.CommandText = "UPDATE Command SET IsPaid = 1 WHERE CommandId = @CommandId";
+                cmd.Parameters.AddWithValue("CommandId", CommandId);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+                _connection.Close();
             }
+
         }
 
         /// <summary>
@@ -135,18 +135,18 @@ namespace Labo_DAL.Services
         /// <param name="commandId"></param>
         public void DeleteCommande(int CommandId)
         {
-            using(SqlConnection conn = _connection)
-            {
-                using(SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "DELETE * FROM Command WHERE CommandID = @CommandId";
-                    cmd.Parameters.AddWithValue("CommandId", CommandId);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
+
+            using (SqlCommand cmd = _connection.CreateCommand())
+            {
+                cmd.CommandText = "DELETE  FROM Command WHERE CommandID = @CommandId";
+                cmd.Parameters.AddWithValue("CommandId", CommandId);
+
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+                _connection.Close();
             }
+
         }
     }
 }

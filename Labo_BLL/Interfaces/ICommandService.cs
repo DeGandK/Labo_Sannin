@@ -10,5 +10,6 @@ namespace Labo_BLL.Interfaces
         List<Command> GetCommandsByUserID(int UserID);
         void ValiderCommande(int CommandId);
         void DeleteCommande(int CommandId);
+        bool IsValid(int CommandId, bool IsPaid);
     }
 }

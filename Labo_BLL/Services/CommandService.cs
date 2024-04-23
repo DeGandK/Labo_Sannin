@@ -51,10 +51,10 @@ namespace Labo_BLL.Services
         {
             return _commandRepo.GetCommandsbyUserID(UserID);
         }
-        public bool IsValid(int CommandId)
+        public bool IsValid(int CommandId, bool IsPaid)
         {
-            bool reponse = false;
-            if (reponse == true)
+            
+            if (IsPaid == true)
             {
                 _commandRepo.ValiderCommande(CommandId);
             }
@@ -62,7 +62,7 @@ namespace Labo_BLL.Services
             {
                _commandRepo.DeleteCommande(CommandId);
             }
-            return reponse;
+            return IsPaid;
             //IsValid ? (return _commandRepo.ValiderCommande(CommandId)) : (return _commandRepo.DeleteCommande(CommandId));
         }
         public void  ValiderCommande(int CommandId)
