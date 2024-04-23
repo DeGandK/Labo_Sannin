@@ -51,12 +51,16 @@ namespace Labo_Sannin_API.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Cette méthode sert à valider la commande en fonction de son état de paiement
+        /// </summary>
+        /// <param name="CommandId"></param>
+        /// <returns></returns>
         [HttpPost("{CommandId}")]
         public IActionResult IsValid(int CommandId)
         {
             // Ici il faut trouver le moyen de savoir si la commande a été payée ou pas... Paypal? Bancontact? ect
-            bool isPaid = false;
+            bool isPaid = _commandService.CheckIsPaid(CommandId);
 
             bool IsValid = _commandService.IsValid(CommandId, isPaid);
 
@@ -71,6 +75,5 @@ namespace Labo_Sannin_API.Controllers
                 return Ok("La commande a été annulée car le paiement a échoué");
             }
         }
-
     }
 }

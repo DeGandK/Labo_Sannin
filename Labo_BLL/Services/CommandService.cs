@@ -75,5 +75,10 @@ namespace Labo_BLL.Services
             _commandRepo.DeleteCommande(CommandId);
 
         }
+
+        public bool CheckIsPaid(int CommandId)
+        {
+            return _commandRepo.CheckIsPaid(CommandId);
+        }
     }
 }

@@ -138,5 +138,20 @@ namespace Labo_DAL.Services
                 _connection.Close();
             }
         }
+
+        public bool CheckIsPaid(int CommandId)
+        {
+            using (SqlCommand cmd = _connection.CreateCommand())
+            {
+                cmd.CommandText = "SELECT IsPaid FROM Command WHERE CommandID = @CommandId";
+                cmd.Parameters.AddWithValue("CommandId", CommandId);
+
+                _connection.Open();
+                bool check = (bool)cmd.ExecuteScalar();
+                _connection.Close();
+
+                return check;
+            }
+        }
     }
 }

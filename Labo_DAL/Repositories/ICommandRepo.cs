@@ -9,5 +9,6 @@ namespace Labo_DAL.Repositories
         List<Command> GetCommandsbyUserID(int UserID);
         void ValiderCommande(int CommandId);
         void DeleteCommande(int CommandId);
+        bool CheckIsPaid(int CommandId);
     }
 }
