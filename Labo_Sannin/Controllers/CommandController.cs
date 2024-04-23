@@ -19,7 +19,7 @@ namespace Labo_Sannin_API.Controllers
             _commandRowService = commandRowService;
         }
         /// <summary>
-        /// Fournit la liste des Commandes
+        /// Fournit la liste des commandes
         /// </summary>
         /// <returns>Un IEnumerable de Command</returns>
         [HttpGet]
@@ -28,7 +28,7 @@ namespace Labo_Sannin_API.Controllers
             return Ok(_commandService.GetAll());
         }
         /// <summary>
-        /// Récupération de commande par User
+        /// Récupération des commandes par User
         /// </summary>
         /// <param name="UserID"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace Labo_Sannin_API.Controllers
         [HttpPost("{CommandId}")]
         public IActionResult IsValid(int CommandId)
         {
-            // Ici il faut trouver le moyen de savoir si la commande a été payée ou pas... Paypal? Bancontact? ect
+            // Ici il faut trouver le moyen de savoir si la commande a été payée ou pas... Paypal? Bancontact? etc
             bool isPaid = _commandService.CheckIsPaid(CommandId);
 
             bool IsValid = _commandService.IsValid(CommandId, isPaid);

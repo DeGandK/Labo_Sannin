@@ -39,7 +39,7 @@ namespace Labo_Sannin_API.Controllers
             }
         }
         /// <summary>
-        /// Enregistrement
+        /// Enregistrement d'un User
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Labo_Sannin_API.Controllers
             }
         }
         /// <summary>
-        /// Récupération de tout les utilisateurs
+        /// Récupération de tous les utilisateurs
         /// </summary>
         /// <returns></returns>
         [HttpGet]

@@ -34,7 +34,7 @@ namespace Labo_BLL.Services
             }
             else
             {
-                throw new InvalidOperationException("Mots de passe incorrect");
+                throw new InvalidOperationException("Mot de passe incorrect");
             }
         }
         public void Register(string nom, string prenom, string email, string password, string telephone, string adresse)
