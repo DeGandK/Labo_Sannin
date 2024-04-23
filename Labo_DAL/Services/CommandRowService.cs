@@ -29,6 +29,7 @@ namespace Labo_DAL.Services
         {
             return new CommandRow
             {
+                LigneCommandID = (int)reader["LigneCommandID"],
                 CommandID = (int)reader["CommandID"],
                 ProductID = (int)reader["ProductID"],
                 Quantite = (int)reader["Quantite"]
@@ -61,7 +62,7 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<CommandRow> GetByCommandId(int id)
+        public IEnumerable<CommandRow> GetByCommandId(int id)
         {
             List<CommandRow> commandRows = new List<CommandRow>();
             using (SqlConnection cnx = _connection)

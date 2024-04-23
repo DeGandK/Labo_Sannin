@@ -37,17 +37,17 @@ namespace Labo_Sannin_API.Tools
                 DateCommande = form.DateCommande 
             };
         }
-        public static CommandRow ToDOMAIN(this CommandRowCreateForm form) 
+        public static Labo_Domain.Models.CommandRow ToDOMAIN(this Models.CommandRowCreateForm form) 
         {
-            return new CommandRow
+            return new Labo_Domain.Models.CommandRow
             {
                 ProductID = form.ProductID,
                 Quantite = form.Quantite,
             };
         }
-        public static CommandRow ToDOMAIN1(CommandRowCreateForm form)
+        public static Labo_Domain.Models.CommandRow ToDOMAIN1(Models.CommandRowCreateForm form)
         {
-            return new CommandRow
+            return new Labo_Domain.Models.CommandRow
             {
                 ProductID = form.ProductID,
                 Quantite = form.Quantite,
