@@ -44,7 +44,7 @@ namespace Labo_DAL.Services
 
         //CRUD
         /// <summary>
-        /// Cette méthode créer un produit et renvoie l'Id dont le produit a hérité
+        /// Cette méthode crée un produit et renvoie l'Id dont le produit a hérité
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
@@ -110,6 +110,11 @@ namespace Labo_DAL.Services
             }
             return p;
         }
+        /// <summary>
+        /// Cette méthode retourne la quantité en stock d'un produit en prenant son id en paramètre
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetStock(int id)
         {
             int stock;
@@ -154,7 +159,7 @@ namespace Labo_DAL.Services
             return listeProduit;
         }
         /// <summary>
-        /// Cette méthode supprimer un produit en prenant son id en paramètre
+        /// Cette méthode supprime un produit en prenant son id en paramètre
         /// </summary>
         /// <param name="id"></param>
         public void Delete(int id)
@@ -174,7 +179,7 @@ namespace Labo_DAL.Services
             }
         }
         /// <summary>
-        /// Cette méthode prend un produit en paramètre et permet de modifier ces données
+        /// Cette méthode prend un produit en paramètre et permet de modifier ses données
         /// </summary>
         /// <param name="product"></param>
         public void Update(Product product)

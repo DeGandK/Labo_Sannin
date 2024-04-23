@@ -38,7 +38,7 @@ namespace Labo_DAL.Services
             };
         }
         /// <summary>
-        /// Cette méthode retourne une liste de tous les commandes
+        /// Cette méthode retourne une liste de toutes les commandes
         /// </summary>
         /// <returns></returns>
         public List<Command> GetAll()
@@ -63,7 +63,7 @@ namespace Labo_DAL.Services
         }
         //CRUD
         /// <summary>
-        /// Cette méthode créer une commande et renvoie l'Id dont la commande a hérité
+        /// Cette méthode crée une commande et renvoie l'Id dont la commande a hérité
         /// </summary>
         /// <param name="Command"></param>
         /// <returns></returns>
@@ -83,6 +83,11 @@ namespace Labo_DAL.Services
                 return id;
             }
         }
+        /// <summary>
+        /// Retourne une liste contenant l'historique des commandes d'un utilisateur via son UserID
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
         public List<Command> GetCommandsbyUserID(int UserID)
         {
             List<Command> list = new List<Command>();
@@ -107,7 +112,7 @@ namespace Labo_DAL.Services
         }
 
         /// <summary>
-        /// Cette méthode sert à Valider une commande si celle ci a bien été payée
+        /// Cette méthode sert à Valider une commande si celle-ci a bien été payée
         /// </summary>
         /// <param name="CommandId"></param>
         public void ValiderCommande(int CommandId)
@@ -123,7 +128,7 @@ namespace Labo_DAL.Services
         }
 
         /// <summary>
-        /// Cette méthode sert à supprimer la commande si elle n'a pas été payée
+        /// Cette méthode sert à supprimer la commande si celle-ci n'a pas été payée
         /// </summary>
         /// <param name="commandId"></param>
         public void DeleteCommande(int CommandId)
@@ -138,7 +143,11 @@ namespace Labo_DAL.Services
                 _connection.Close();
             }
         }
-
+        /// <summary>
+        /// Booléen vérifiant si la commande est payée afin de la valider ou la supprimer
+        /// </summary>
+        /// <param name="CommandId"></param>
+        /// <returns></returns>
         public bool CheckIsPaid(int CommandId)
         {
             using (SqlCommand cmd = _connection.CreateCommand())

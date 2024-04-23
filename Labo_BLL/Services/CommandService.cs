@@ -23,7 +23,11 @@ namespace Labo_BLL.Services
             _productRepo = productRepo;
             _commandRowRepo = commandRowRepo;
         }
-
+        /// <summary>
+        /// Crée un commande reprenant tous les produits sélectionnés
+        /// </summary>
+        /// <param name="cr"></param>
+        /// <exception cref="Exception"></exception>
         public void Create(CompleteCommand cr)
         {
             int id = _commandRepo.Create(cr);

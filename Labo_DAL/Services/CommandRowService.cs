@@ -34,6 +34,10 @@ namespace Labo_DAL.Services
                 Quantite = (int)reader["Quantite"]
             };
         }
+        /// <summary>
+        /// Crée une ligne dans le panier contenant l'id de la commande, du produit et sa quantité
+        /// </summary>
+        /// <param name="cr"></param>
         public void Create(CommandRow cr) 
         {
             using (SqlConnection cnx = _connection) 
@@ -52,6 +56,11 @@ namespace Labo_DAL.Services
                 }
             }
         }
+        /// <summary>
+        /// Retourne une liste contenant les produits via l'id de la commande
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<CommandRow> GetByCommandId(int id)
         {
             List<CommandRow> commandRows = new List<CommandRow>();
