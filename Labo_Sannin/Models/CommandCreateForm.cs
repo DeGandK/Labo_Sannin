@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Labo_Domain.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Labo_Sannin_API.Models
 {
