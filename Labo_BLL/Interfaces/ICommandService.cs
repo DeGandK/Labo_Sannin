@@ -8,5 +8,7 @@ namespace Labo_BLL.Interfaces
         void Create(CompleteCommand cr);
         List<Command> GetAll();
         List<Command> GetCommandsByUserID(int UserID);
+        void ValiderCommande(int CommandId);
+        void DeleteCommande(int CommandId);
     }
 }

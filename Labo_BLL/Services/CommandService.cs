@@ -51,6 +51,29 @@ namespace Labo_BLL.Services
         {
             return _commandRepo.GetCommandsbyUserID(UserID);
         }
-        
+        public bool IsValid(int CommandId)
+        {
+            bool reponse = false;
+            if (reponse == true)
+            {
+                _commandRepo.ValiderCommande(CommandId);
+            }
+            else
+            {
+               _commandRepo.DeleteCommande(CommandId);
+            }
+            return reponse;
+            //IsValid ? (return _commandRepo.ValiderCommande(CommandId)) : (return _commandRepo.DeleteCommande(CommandId));
+        }
+        public void  ValiderCommande(int CommandId)
+        {
+            _commandRepo.ValiderCommande(CommandId);
+        }
+
+        public void DeleteCommande(int CommandId)
+        {
+            _commandRepo.DeleteCommande(CommandId);
+
+        }
     }
 }
