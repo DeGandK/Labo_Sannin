@@ -52,22 +52,14 @@ namespace Labo_DAL.Services
                 }
             }
         }
-        public List<CommandRow> GetByCommandId(int id, int productid)
+        public List<CommandRow> GetByCommandId(int id)
         {
             List<CommandRow> commandRows = new List<CommandRow>();
             using (SqlConnection cnx = _connection)
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    string sql = "SELECT Stock FROM Product WHERE ProductID = @ProductID";
-                    cmd.CommandText = sql;
-                    cmd.Parameters.AddWithValue("ProductID", productid);
-                    cnx.Open();
-                    int stock = (int)cmd.ExecuteScalar();
-                    cnx.Close();
-
-                    if (stock > 0 )
-                    {
+                    
                         cmd.CommandText = "SELECT * FROM Product p JOIN CommandRow cr ON p.ProductID = cr.ProductID WHERE CommandID = @CommandID";
                         cmd.Parameters.AddWithValue("CommandID", id);
                         cnx.Open();
@@ -79,11 +71,7 @@ namespace Labo_DAL.Services
                             }
                         }
                         cnx.Close();
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException();
-                    }
+                    
                 }
             }
             return commandRows;

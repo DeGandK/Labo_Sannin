@@ -20,9 +20,9 @@ namespace Labo_BLL.Services
             _categoriesRepo = categoriesRepo;
         }
 
-        public int Create(Product product)
+        public void Create(Product product)
         {
-            return _productRepo.Create(product);
+             _productRepo.Create(product);
         }
 
         public void Delete(int id)

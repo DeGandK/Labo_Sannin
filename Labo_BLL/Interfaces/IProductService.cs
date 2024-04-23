@@ -5,7 +5,7 @@ namespace Labo_BLL.Interfaces
 {
     public interface IProductService
     {
-        int Create(Product product);
+        void Create(Product product);
         void Delete(int id);
         IEnumerable<Product> GetAll();
         CompleteProduct GetById(int id);

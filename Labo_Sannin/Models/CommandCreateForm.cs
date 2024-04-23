@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Labo_Domain.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Labo_Sannin_API.Models
 {
@@ -11,5 +12,7 @@ namespace Labo_Sannin_API.Models
         public bool IsPaid { get; set; }
         [Required]
         public DateTime DateCommande { get; set; }
+        [Required]
+        public List<CommandRowCreateForm> produitChoisis { get; set; }
     }
 }
