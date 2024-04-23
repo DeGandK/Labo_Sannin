@@ -1,6 +1,7 @@
 ﻿using Labo_BLL.Models;
 using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Labo_Sannin_API.Tools
@@ -56,11 +57,10 @@ namespace Labo_Sannin_API.Tools
         {
             return new CompleteCommand
             {
-
                 UserID = form.UserID,
                 IsPaid = form.IsPaid,
                 DateCommande = DateTime.Now,
-                CommandRows = new List<CommandRow>(),
+                CommandRows = form.produitChoisis.ToList<CommandRow>(),
             };
         }
     }

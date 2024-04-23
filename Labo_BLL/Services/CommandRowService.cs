@@ -22,25 +22,9 @@ namespace Labo_BLL.Services
             _commandRepo = commandRepo;
         }
 
-        public void Create(CompleteCommand cr)
+        public void Create(CommandRow c)
         {
-            // Récuperer le stock
-            // Récuperer la quantité
-            foreach (CommandRow item in cr.CommandRows)
-            {
-                int stock = _productRepo.GetStock(item.ProductID);
-                int quantite = item.Quantite;
-                if (stock > quantite)
-                {
-                    _commandRepo.Create(cr);
-                    _commandRowRepo.Create(item);
-                }
-                else
-                {
-                    throw new Exception();
-                }
-            }
-
+            _commandRowRepo.Create(c);
         }
 
         public List<CommandRow> GetByCommandId(int id)

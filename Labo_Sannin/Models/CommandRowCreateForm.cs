@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Labo_Domain.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Labo_Sannin_API.Models
 {
-    public class CommandRowCreateForm
+    public class CommandRowCreateForm : CommandRow
     {
         [Required]
         public int ProductID { get; set; }

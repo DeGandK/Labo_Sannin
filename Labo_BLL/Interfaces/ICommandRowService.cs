@@ -6,6 +6,6 @@ namespace Labo_BLL.Interfaces
     public interface ICommandRowService
     {
         List<CommandRow> GetByCommandId(int id);
-        void Create(CompleteCommand cr);
+        void Create(CommandRow c);
     }
 }

@@ -41,7 +41,6 @@ namespace Labo_BLL.Services
                     throw new Exception();
                 }
             }
-
         }
         public List<Command> GetAll()
         {
@@ -69,13 +68,11 @@ namespace Labo_BLL.Services
         {
             _commandRepo.ValiderCommande(CommandId);
         }
-
         public void DeleteCommande(int CommandId)
         {
             _commandRepo.DeleteCommande(CommandId);
 
         }
-
         public bool CheckIsPaid(int CommandId)
         {
             return _commandRepo.CheckIsPaid(CommandId);
