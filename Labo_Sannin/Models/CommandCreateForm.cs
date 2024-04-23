@@ -13,6 +13,6 @@ namespace Labo_Sannin_API.Models
         [Required]
         public DateTime DateCommande { get; set; }
         [Required]
-        public List<CommandRowCreateForm> produitChoisis { get; set; }
+        public List<CommandRow> produitChoisis { get; set; }
     }
 }

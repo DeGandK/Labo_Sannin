@@ -10,5 +10,6 @@ namespace Labo_BLL.Interfaces
         IEnumerable<Product> GetAll();
         CompleteProduct GetById(int id);
         void Update(Product product);
+        int GetStock(int id);
     }
 }

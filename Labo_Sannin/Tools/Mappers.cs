@@ -60,7 +60,7 @@ namespace Labo_Sannin_API.Tools
                 UserID = form.UserID,
                 IsPaid = form.IsPaid,
                 DateCommande = DateTime.Now,
-                CommandRows = form.produitChoisis.ToList<CommandRow>(),
+                CommandRows = form.produitChoisis,
             };
         }
     }

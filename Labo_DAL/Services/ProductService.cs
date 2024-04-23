@@ -117,18 +117,17 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public int GetStock(int id)
         {
-            int stock;
-            using (SqlConnection connection = _connection)
-            {
-                using (SqlCommand cmd = connection.CreateCommand())
+            int stock = 0;
+            
+                using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Stock FROM Product WHERE ProductID = @ProductId";
+                    cmd.CommandText = "SELECT Stock FROM Product WHERE ProductID = @ProductID";
                     cmd.Parameters.AddWithValue("ProductID", id);
-                    connection.Open();
+                    _connection.Open();
                     stock = (int)cmd.ExecuteScalar();
-                    connection.Close();
+                    _connection.Close();
                 }
-            }
+            
             return stock;
         }
 

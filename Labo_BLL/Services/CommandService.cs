@@ -33,7 +33,8 @@ namespace Labo_BLL.Services
             int id = _commandRepo.Create(cr);
             foreach (CommandRow item in cr.CommandRows)
             {
-                int stock = _productRepo.GetStock(item.ProductID);
+                int ID = item.ProductID;
+                int stock = _productRepo.GetStock(ID);
                 int quantite = item.Quantite;
                 if (stock > quantite)
                 {

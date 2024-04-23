@@ -35,6 +35,11 @@ namespace Labo_BLL.Services
             
             _productRepo.Update(product);
         }
+        public int GetStock(int id) 
+        {
+            return _productRepo.GetStock(id);
+        }
+
 
         public IEnumerable<Product> GetAll()
         {
