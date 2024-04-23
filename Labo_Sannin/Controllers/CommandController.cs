@@ -13,10 +13,12 @@ namespace Labo_Sannin_API.Controllers
     {
         private readonly ICommandService _commandService;
         private readonly ICommandRowService _commandRowService;
-        public CommandController(ICommandService commandService, ICommandRowService commandRowService)
+        private readonly IProductService _productService;
+        public CommandController(ICommandService commandService, ICommandRowService commandRowService, IProductService productService)
         {
             _commandService = commandService;
             _commandRowService = commandRowService;
+            _productService = productService;
         }
         /// <summary>
         /// Fournit la liste des commandes
@@ -67,6 +69,21 @@ namespace Labo_Sannin_API.Controllers
             if (IsValid)
             {
                 _commandService.ValiderCommande(CommandId);
+                int stock;
+                List<CommandRow> essai = _commandRowService.GetByCommandId(CommandId);
+                
+                foreach (CommandRow e in essai)
+                {
+                    Product produitAchete = _productService.GetById(e.ProductID);
+                    produitAchete.Stock = (produitAchete.Stock) - e.Quantite;
+                    produitAchete.ProductID = e.ProductID;
+                    produitAchete.PrixHTVA = produitAchete.PrixHTVA;
+                    produitAchete.Description = produitAchete.Description;
+                    produitAchete.CategorieID = produitAchete.CategorieID;
+                    produitAchete.Image = produitAchete.Image;
+                    produitAchete.Nom = produitAchete.Nom;
+                    _productService.Update(produitAchete);
+                }
                 return Ok("Commande validée avec succès");
             }
             else
