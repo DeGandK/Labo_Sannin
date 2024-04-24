@@ -37,17 +37,17 @@ namespace Labo_Sannin_API.Tools
                 DateCommande = form.DateCommande 
             };
         }
-        public static Labo_Domain.Models.CommandRow ToDOMAIN(this Models.CommandRowCreateForm form) 
+        public static CommandRow ToDOMAIN(this Models.CommandRowCreateForm form) 
         {
-            return new Labo_Domain.Models.CommandRow
+            return new CommandRow
             {
                 ProductID = form.ProductID,
                 Quantite = form.Quantite,
             };
         }
-        public static Labo_Domain.Models.CommandRow ToDOMAIN1(Models.CommandRowCreateForm form)
+        public static CommandRow ToDOMAIN1(this CommandRowCreateForm form)
         {
-            return new Labo_Domain.Models.CommandRow
+            return new CommandRow
             {
                 ProductID = form.ProductID,
                 Quantite = form.Quantite,
@@ -60,7 +60,7 @@ namespace Labo_Sannin_API.Tools
                 UserID = form.UserID,
                 IsPaid = form.IsPaid,
                 DateCommande = DateTime.Now,
-                CommandRows = form.produitChoisis,
+                CommandRows = form.produitChoisis.Select(s => s.ToDOMAIN1()),
             };
         }
     }
