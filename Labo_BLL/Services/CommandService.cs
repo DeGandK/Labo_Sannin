@@ -37,7 +37,7 @@ namespace Labo_BLL.Services
                 int ID = item.ProductID;
                 int stock = _productRepo.GetStock(ID);
                 int quantite = item.Quantite;
-                if (stock > quantite)
+                if (stock >= quantite)
                 {
                     item.CommandID = id;
                     _commandRowRepo.Create(item);
