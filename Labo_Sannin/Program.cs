@@ -37,7 +37,7 @@ builder.Services.AddSwaggerGen(
         c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
     });
 
-builder.Services.AddTransient(sp => new SqlConnection(builder.Configuration.GetConnectionString("KEVIN DE GAND")));
+builder.Services.AddTransient(sp => new SqlConnection(builder.Configuration.GetConnectionString("ISTVAN PRIGNOT")));
 
 
 
@@ -95,6 +95,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
