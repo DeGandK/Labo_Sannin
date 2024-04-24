@@ -12,15 +12,7 @@ namespace Labo_DAL.Services
 {
     public class CommandRowService : ICommandRowRepo
     {
-        //private string connectionString;
-
-        //public CommandRowService(IConfiguration config)
-        //{
-        //    connectionString = config.GetConnectionString("ISTVAN PRIGNOT");
-        //}
-
         private SqlConnection _connection;
-
         public CommandRowService(SqlConnection conn)
         {
             _connection = conn;
@@ -41,7 +33,6 @@ namespace Labo_DAL.Services
         /// <param name="cr"></param>
         public void Create(CommandRow cr)
         {
-
             using (SqlCommand cmd = _connection.CreateCommand())
             {
                 string sql = "INSERT INTO CommandRow (CommandID,ProductID,Quantite) VALUES (@CID,@PID,@Quant)";
@@ -54,7 +45,6 @@ namespace Labo_DAL.Services
                 cmd.ExecuteNonQuery();
                 _connection.Close();
             }
-
         }
         /// <summary>
         /// Retourne une liste contenant les produits via l'id de la commande
@@ -67,7 +57,6 @@ namespace Labo_DAL.Services
 
             using (SqlCommand cmd = _connection.CreateCommand())
             {
-
                 cmd.CommandText = "SELECT * FROM Product p JOIN CommandRow cr ON p.ProductID = cr.ProductID WHERE CommandID = @CommandID";
                 cmd.Parameters.AddWithValue("CommandID", id);
                 _connection.Open();
@@ -79,16 +68,8 @@ namespace Labo_DAL.Services
                     }
                 }
                 _connection.Close();
-
-
             }
             return commandRows;
         }
-
-
-
-
-
-
     }
 }

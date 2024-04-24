@@ -37,15 +37,7 @@ namespace Labo_Sannin_API.Tools
                 DateCommande = form.DateCommande 
             };
         }
-        public static CommandRow ToDOMAIN(this Models.CommandRowCreateForm form) 
-        {
-            return new CommandRow
-            {
-                ProductID = form.ProductID,
-                Quantite = form.Quantite,
-            };
-        }
-        public static CommandRow ToDOMAIN1(this CommandRowCreateForm form)
+        public static CommandRow ToDOMAIN(this CommandRowCreateForm form) 
         {
             return new CommandRow
             {
@@ -60,7 +52,7 @@ namespace Labo_Sannin_API.Tools
                 UserID = form.UserID,
                 IsPaid = form.IsPaid,
                 DateCommande = DateTime.Now,
-                CommandRows = form.produitChoisis.Select(s => s.ToDOMAIN1()),
+                CommandRows = form.produitChoisis.Select(s => s.ToDOMAIN()),
             };
         }
     }

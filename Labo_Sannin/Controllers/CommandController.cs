@@ -28,7 +28,14 @@ namespace Labo_Sannin_API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_commandService.GetAll());
+            try
+            {
+                return Ok(_commandService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Récupération des commandes par User
@@ -38,7 +45,14 @@ namespace Labo_Sannin_API.Controllers
         [HttpGet("{UserID}")]
         public IActionResult GetCommandsbyUserID([FromRoute] int UserID)
         {
-            return Ok(_commandService.GetCommandsByUserID(UserID));
+            try
+            {
+                return Ok(_commandService.GetCommandsByUserID(UserID));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Création de commande
@@ -49,11 +63,16 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult Create([FromBody] CommandCreateForm form)
         {
             if (!ModelState.IsValid) return BadRequest();
-
-            _commandService.Create(form.ToBLL());
-            return Ok();
+            try
+            {
+                _commandService.Create(form.ToBLL());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
         /// <summary>
         /// Cette méthode sert à valider la commande en fonction de son état de paiement
         /// </summary>
@@ -63,19 +82,24 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult IsValid(int CommandId)
         {
             // Ici il faut trouver le moyen de savoir si la commande a été payée ou pas... Paypal? Bancontact? etc
-            bool isPaid = _commandService.CheckIsPaid(CommandId);
-
-            bool IsValid = _commandService.IsValid(CommandId, isPaid);
-
-            if (IsValid)
+            try
             {
-                _commandService.StockAchat(CommandId);
-                return Ok("Commande validée avec succès");
+                bool isPaid = _commandService.CheckIsPaid(CommandId);
+                bool IsValid = _commandService.IsValid(CommandId, isPaid);
+                if (IsValid)
+                {
+                    _commandService.StockAchat(CommandId);
+                    return Ok("Commande validée avec succès");
+                }
+                else
+                {
+                    _commandService.DeleteCommande(CommandId);
+                    return Ok("La commande a été annulée car le paiement a échoué");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _commandService.DeleteCommande(CommandId);
-                return Ok("La commande a été annulée car le paiement a échoué");
+                return BadRequest(ex.Message);
             }
         }
     }

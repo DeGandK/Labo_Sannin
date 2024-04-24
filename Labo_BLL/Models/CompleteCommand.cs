@@ -10,6 +10,5 @@ namespace Labo_BLL.Models
     public class CompleteCommand : Command
     {
         public IEnumerable<CommandRow> CommandRows { get; set; }
-
     }
 }

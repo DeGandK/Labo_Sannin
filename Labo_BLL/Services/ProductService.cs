@@ -19,17 +19,14 @@ namespace Labo_BLL.Services
             _productRepo = productRepo;
             _categoriesRepo = categoriesRepo;
         }
-
         public void Create(Product product)
         {
              _productRepo.Create(product);
         }
-
         public void Delete(int id)
         {
             _productRepo.Delete(id);
         }
-
         public void Update(Product product)
         {
             
@@ -39,13 +36,10 @@ namespace Labo_BLL.Services
         {
             return _productRepo.GetStock(id);
         }
-
-
         public IEnumerable<Product> GetAll()
         {
             return _productRepo.GetAll();
         }
-
         public CompleteProduct GetById(int id)
         {
             Product p = _productRepo.GetById(id);

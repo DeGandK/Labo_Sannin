@@ -21,17 +21,13 @@ namespace Labo_BLL.Services
             _productRepo = productRepo;
             _commandRepo = commandRepo;
         }
-
         public void Create(CommandRow c)
         {
             _commandRowRepo.Create(c);
         }
-
         public List<CommandRow> GetByCommandId(int id)
         {
             return _commandRowRepo.GetByCommandId(id);
         }
-
-
     }
 }

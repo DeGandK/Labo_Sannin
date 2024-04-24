@@ -24,7 +24,14 @@ namespace Labo_Sannin_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
-            return Ok(_productService.GetAll());
+            try
+            {
+                return Ok(_productService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Cette méthode permet d'obtenir les caractéristiques d'un produit grâce à l'id rentré en paramètre
@@ -35,7 +42,14 @@ namespace Labo_Sannin_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetById(int id)
         {
-            return Ok(_productService.GetById(id));
+            try
+            {
+                return Ok(_productService.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Cette méthode permet de créer un produit
@@ -48,8 +62,15 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult Create(ProductCreateForm form)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            _productService.Create(form.ToDOMAIN());
-            return Ok();
+            try
+            {
+                _productService.Create(form.ToDOMAIN());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Permet de supprimer un produit en entrant son id en paramètre
@@ -60,8 +81,15 @@ namespace Labo_Sannin_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Delete (int id)
         {
-            _productService.Delete(id);
-            return Ok();
+            try
+            {
+                _productService.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Cette méthode permet de modifier un produit via son ID
@@ -76,11 +104,17 @@ namespace Labo_Sannin_API.Controllers
         public IActionResult Update([FromBody]ProductCreateForm p,[FromRoute]int id)
         {
             if(!ModelState.IsValid) return BadRequest();
-            Product product = p.ToDOMAIN();
-            product.ProductID = id;
-            _productService.Update(product);
-
-            return Ok();
+            try
+            {
+                Product product = p.ToDOMAIN();
+                product.ProductID = id;
+                _productService.Update(product);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
