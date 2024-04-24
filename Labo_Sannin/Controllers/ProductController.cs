@@ -2,6 +2,7 @@
 using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,6 +57,7 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [Authorize("adminPolicy")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProductCreateForm),StatusCodes.Status400BadRequest)]
@@ -77,6 +79,7 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("adminPolicy")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Delete (int id)
@@ -97,6 +100,7 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="p"></param>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("adminPolicy")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         //[ProducesResponseType(typeof(ProductCreateForm)),

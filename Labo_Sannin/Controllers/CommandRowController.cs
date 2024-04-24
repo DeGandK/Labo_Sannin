@@ -2,6 +2,7 @@
 using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +17,14 @@ namespace Labo_Sannin_API.Controllers
         {
             _commandRowService = commandRowService;
         }
-
-
         /// <summary>
         /// Récupération de la liste de commande
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("isConnectedPolicy")]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCommandId(int id)
         {
             try

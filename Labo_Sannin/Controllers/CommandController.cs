@@ -3,6 +3,7 @@ using Labo_BLL.Models;
 using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,7 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <returns>Un IEnumerable de Command</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
             try
@@ -42,7 +44,9 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="UserID"></param>
         /// <returns></returns>
+        [Authorize("isConnectedPolicy")]
         [HttpGet("{UserID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetCommandsbyUserID([FromRoute] int UserID)
         {
             try
@@ -59,7 +63,9 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [Authorize("isConnectedPolicy")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Create([FromBody] CommandCreateForm form)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -78,7 +84,9 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="CommandId"></param>
         /// <returns></returns>
+        [Authorize("adminPolicy")]
         [HttpPost("{CommandId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult IsValid(int CommandId)
         {
             // Ici il faut trouver le moyen de savoir si la commande a été payée ou pas... Paypal? Bancontact? etc

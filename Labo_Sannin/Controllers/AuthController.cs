@@ -24,6 +24,7 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="loginInfo"></param>
         /// <returns></returns>
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Login(UserLoginForm loginInfo)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -44,6 +45,7 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Register(UserRegisterForm form)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -64,6 +66,7 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Update([FromBody]UserUpdateForm form,[FromRoute] int id) 
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -84,6 +87,7 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
             try
