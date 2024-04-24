@@ -44,7 +44,7 @@ namespace Labo_BLL.Services
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new Exception("Stock insuffisant");
                 }
             }
         }
