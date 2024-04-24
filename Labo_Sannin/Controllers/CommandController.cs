@@ -1,4 +1,5 @@
 ﻿using Labo_BLL.Interfaces;
+using Labo_BLL.Models;
 using Labo_Domain.Models;
 using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
@@ -68,22 +69,7 @@ namespace Labo_Sannin_API.Controllers
 
             if (IsValid)
             {
-                _commandService.ValiderCommande(CommandId);
-                int stock;
-                List<CommandRow> essai = _commandRowService.GetByCommandId(CommandId);
-                
-                foreach (CommandRow e in essai)
-                {
-                    Product produitAchete = _productService.GetById(e.ProductID);
-                    produitAchete.Stock -= e.Quantite;
-                    produitAchete.ProductID = e.ProductID;
-                    produitAchete.PrixHTVA = produitAchete.PrixHTVA;
-                    produitAchete.Description = produitAchete.Description;
-                    produitAchete.CategorieID = produitAchete.CategorieID;
-                    produitAchete.Image = produitAchete.Image;
-                    produitAchete.Nom = produitAchete.Nom;
-                    _productService.Update(produitAchete);
-                }
+                _commandService.StockAchat(CommandId);
                 return Ok("Commande validée avec succès");
             }
             else
