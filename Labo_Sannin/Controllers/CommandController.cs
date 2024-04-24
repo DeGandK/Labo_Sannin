@@ -75,7 +75,7 @@ namespace Labo_Sannin_API.Controllers
                 foreach (CommandRow e in essai)
                 {
                     Product produitAchete = _productService.GetById(e.ProductID);
-                    produitAchete.Stock = (produitAchete.Stock) - e.Quantite;
+                    produitAchete.Stock -= e.Quantite;
                     produitAchete.ProductID = e.ProductID;
                     produitAchete.PrixHTVA = produitAchete.PrixHTVA;
                     produitAchete.Description = produitAchete.Description;

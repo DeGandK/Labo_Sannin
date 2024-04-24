@@ -50,36 +50,35 @@ namespace Labo_DAL.Services
         /// <returns></returns>
         public void Create(Product product)
         {
-            using (SqlConnection connection = _connection)
+
+            using (SqlCommand command = _connection.CreateCommand())
             {
-                using (SqlCommand command = connection.CreateCommand())
+                command.CommandText = "INSERT INTO Product (Nom,Description,Stock,PrixHTVA,Image,CategorieID) VALUES " +
+                    "(@Nom,@Description,@Stock,@PrixHTVA,@Image,@CategorieID)";
+
+                command.Parameters.AddWithValue("Nom", product.Nom);
+                command.Parameters.AddWithValue("Description", product.Description);
+                command.Parameters.AddWithValue("Stock", product.Stock);
+                command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
+                command.Parameters.AddWithValue("Image", product.Image);
+                command.Parameters.AddWithValue("CategorieID", product.CategorieID);
+
+                try
                 {
-                    command.CommandText = "INSERT INTO Product (Nom,Description,Stock,PrixHTVA,Image,CategorieID) VALUES " +
-                        "(@Nom,@Description,@Stock,@PrixHTVA,@Image,@CategorieID)";
-
-                    command.Parameters.AddWithValue("Nom", product.Nom);
-                    command.Parameters.AddWithValue("Description", product.Description);
-                    command.Parameters.AddWithValue("Stock", product.Stock);
-                    command.Parameters.AddWithValue("PrixHTVA", product.PrixHTVA);
-                    command.Parameters.AddWithValue("Image", product.Image);
-                    command.Parameters.AddWithValue("CategorieID", product.CategorieID);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        connection.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //Gérer l'exception
-                        throw ex;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
+                    _connection.Open();
+                    command.ExecuteNonQuery();
+                    _connection.Close();
                 }
+                catch (SqlException ex)
+                {
+                    //Gérer l'exception
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
             }
         }
         /// <summary>
@@ -90,24 +89,23 @@ namespace Labo_DAL.Services
         public Product GetById(int id)
         {
             Product p = new Product();
-            using (SqlConnection connection = _connection)
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT * FROM Product WHERE ProductID = @ProductId";
 
-                    command.Parameters.AddWithValue("ProductID", id);
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+            using (SqlCommand command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Product WHERE ProductID = @ProductId";
+
+                command.Parameters.AddWithValue("ProductID", id);
+                _connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            p = Converter(reader);
-                        }
+                        p = Converter(reader);
                     }
-                    connection.Close();
                 }
+                _connection.Close();
             }
+
             return p;
         }
         /// <summary>
@@ -138,22 +136,21 @@ namespace Labo_DAL.Services
         public List<Product> GetAll()
         {
             List<Product> listeProduit = new List<Product>();
-            using (SqlConnection connection = _connection)
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT * FROM Product";
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            listeProduit.Add(Converter(reader));
 
-                        }
+            using (SqlCommand command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Product";
+                _connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listeProduit.Add(Converter(reader));
+
                     }
-                    connection.Close();
                 }
+                _connection.Close();
+
             }
             return listeProduit;
         }
@@ -163,16 +160,16 @@ namespace Labo_DAL.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-                using (SqlCommand command = _connection.CreateCommand())
-                {
-                    command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
+            using (SqlCommand command = _connection.CreateCommand())
+            {
+                command.CommandText = "DELETE FROM Product WHERE ProductID = @Id";
 
-                    command.Parameters.AddWithValue("Id", id);
+                command.Parameters.AddWithValue("Id", id);
 
-                    _connection.Open();
-                    command.ExecuteNonQuery();
-                    _connection.Close();
-                }
+                _connection.Open();
+                command.ExecuteNonQuery();
+                _connection.Close();
+            }
         }
         /// <summary>
         /// Cette méthode prend un produit en paramètre et permet de modifier ses données
