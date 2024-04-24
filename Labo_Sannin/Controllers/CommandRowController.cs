@@ -16,6 +16,8 @@ namespace Labo_Sannin_API.Controllers
         {
             _commandRowService = commandRowService;
         }
+
+
         /// <summary>
         /// Récupération de la liste de commande
         /// </summary>
@@ -24,19 +26,15 @@ namespace Labo_Sannin_API.Controllers
         [HttpGet]
         public IActionResult GetByCommandId(int id)
         {
+            try
+            {
             return Ok(_commandRowService.GetByCommandId(id));
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-        ///// <summary>
-        ///// Création d'une ligne avec un produit
-        ///// </summary>
-        ///// <param name="form"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public IActionResult Create(CommandRowCreateForm form) 
-        //{
-        //    if (!ModelState.IsValid) return BadRequest();
-        //    _commandRowService.Create(form);
-        //    return Ok();
-        //}
     }
 }
