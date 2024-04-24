@@ -12,5 +12,6 @@ namespace Labo_BLL.Interfaces
         void DeleteCommande(int CommandId);
         bool IsValid(int CommandId, bool IsPaid);
         bool CheckIsPaid(int CommandId);
+        void StockAchat(int CommandId);
     }
 }
