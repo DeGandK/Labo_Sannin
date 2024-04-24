@@ -4,7 +4,7 @@ namespace Labo_DAL.Repositories
 {
     public interface ICommandRowRepo
     {
-        IEnumerable<CommandRow> GetByCommandId(int id);
+        List<CommandRow> GetByCommandId(int id);
         void Create(CommandRow cr);
     }
 }

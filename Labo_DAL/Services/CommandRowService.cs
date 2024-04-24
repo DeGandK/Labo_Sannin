@@ -62,7 +62,7 @@ namespace Labo_DAL.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<CommandRow> GetByCommandId(int id)
+        public List<CommandRow> GetByCommandId(int id)
         {
             List<CommandRow> commandRows = new List<CommandRow>();
             using (SqlConnection cnx = _connection)

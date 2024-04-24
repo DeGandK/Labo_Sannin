@@ -5,7 +5,7 @@ namespace Labo_BLL.Interfaces
 {
     public interface ICommandRowService
     {
-        IEnumerable<CommandRow> GetByCommandId(int id);
+        List<CommandRow> GetByCommandId(int id);
         void Create(CommandRow c);
     }
 }

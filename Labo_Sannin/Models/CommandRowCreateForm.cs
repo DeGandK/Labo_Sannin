@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Labo_Sannin_API.Models
 {
-    public class CommandRowCreateForm : Labo_Domain.Models.CommandRow
+    public class CommandRowCreateForm : CommandRow
     {
         [Required]
         public int ProductID { get; set; }

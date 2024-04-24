@@ -27,7 +27,7 @@ namespace Labo_BLL.Services
             _commandRowRepo.Create(c);
         }
 
-        public IEnumerable<CommandRow> GetByCommandId(int id)
+        public List<CommandRow> GetByCommandId(int id)
         {
             return _commandRowRepo.GetByCommandId(id);
         }
