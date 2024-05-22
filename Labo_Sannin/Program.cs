@@ -95,6 +95,9 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+
+app.UseCors(o => o.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
 app.UseAuthentication();
 app.UseAuthorization();
 
