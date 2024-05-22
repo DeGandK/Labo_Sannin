@@ -22,7 +22,7 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize("isConnectedPolicy")]
+        //[Authorize("isConnectedPolicy")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCommandId(int id)
