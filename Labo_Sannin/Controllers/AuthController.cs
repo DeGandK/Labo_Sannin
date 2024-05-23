@@ -4,6 +4,7 @@ using Labo_Sannin_API.Models;
 using Labo_Sannin_API.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Labo_Sannin_API.Controllers
 {
@@ -86,7 +87,7 @@ namespace Labo_Sannin_API.Controllers
         /// Récupération de tous les utilisateurs
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
@@ -99,12 +100,16 @@ namespace Labo_Sannin_API.Controllers
                 throw ex;
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetById(int id)
+        public IActionResult GetById()
         {
             try
             {
+                string tokenFromRequest = HttpContext.Request.Headers["Authorization"];
+                string tokenOk = tokenFromRequest.Substring(7, tokenFromRequest.Length - 7);
+                JwtSecurityToken jwt = new JwtSecurityToken(tokenOk);
+                int id = int.Parse(jwt.Claims.FirstOrDefault(c => c.Type == "UserId").Value);
                 return Ok(_userService.GetById(id));
             }
             catch (Exception ex)
