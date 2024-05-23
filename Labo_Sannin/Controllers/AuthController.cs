@@ -99,5 +99,19 @@ namespace Labo_Sannin_API.Controllers
                 throw ex;
             }
         }
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                return Ok(_userService.GetById(id));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
