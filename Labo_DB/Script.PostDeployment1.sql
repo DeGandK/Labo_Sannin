@@ -13,10 +13,10 @@ CREATE TRIGGER [Trigger_ChangementStatut_RetirerProduit]
 ON Product
 INSTEAD OF DELETE
 AS BEGIN
-UPDATE Product 
-SET IsActif = 0 
-FROM deleted 
-WHERE ProductID = (SELECT ProductID FROM deleted);
+UPDATE p
+SET p.IsActif = 0 
+FROM Product p
+WHERE p.ProductID IN (SELECT d.ProductID FROM deleted d);
 END;
 
 INSERT INTO Categories (Nom, Description, TauxTVA) VALUES ('Saurisserie', 'produit de la mer', 6)
@@ -66,4 +66,5 @@ INSERT INTO Product (Nom, Description, Stock, PrixHTVA, Image, CategorieID) VALU
 
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ( 'Oliplum', 'Peluche bébé éléphant rose',25, 12.50, 'https://la-peluche.com/wp-content/uploads/2020/04/product-image-552522656.jpg', 8)
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ('Lego Ninjago', 'Jouet de construction Lego Ninjago',10, 25, 'https://m.media-amazon.com/images/I/815BBPcE92L.jpg', 8)
+INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ( 'Pulzze Disney', 'Disney princesse Disney la reine des neige',4, 10,'https://data.puzzle.be/ravensburger.5/2-puzzles-disney-la-reine-des-neiges-puzzle-24-pieces.46917-1.fs.jpg', 8)
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ( 'Pulzze Disney', 'Disney princesse Disney la reine des neige',4, 10,'https://data.puzzle.be/ravensburger.5/2-puzzles-disney-la-reine-des-neiges-puzzle-24-pieces.46917-1.fs.jpg', 8)
