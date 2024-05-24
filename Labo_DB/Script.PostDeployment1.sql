@@ -16,7 +16,7 @@ AS BEGIN
 UPDATE p
 SET p.IsActif = 0 
 FROM Product p
-WHERE p.ProductID IN (SELECT d.ProductID FROM deleted d);
+WHERE p.ProductID = (SELECT d.ProductID FROM deleted d);
 END;
 
 INSERT INTO Categories (Nom, Description, TauxTVA) VALUES ('Saurisserie', 'produit de la mer', 6)
