@@ -6,6 +6,7 @@
 	[Stock] INT NOT NULL,
 	[PrixHTVA] MONEY NOT NULL,
 	[Image] VARCHAR(MAX) NOT NULL,
-	[CategorieID] INT NOT NULL, 
+	[CategorieID] INT NOT NULL,
+	[IsActif] BIT NOT NULL DEFAULT 1,
     CONSTRAINT [FK_Product_Categories] FOREIGN KEY ([CategorieID]) REFERENCES [Categories]([CategorieId])
 )
