@@ -9,15 +9,9 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-CREATE TRIGGER [Trigger_ChangementStatut_RetirerProduit]
-ON Product
-INSTEAD OF DELETE
-AS BEGIN
-UPDATE p
-SET p.IsActif = 0 
-FROM Product p
-WHERE p.ProductID = (SELECT d.ProductID FROM deleted d);
-END;
+
+
+
 
 INSERT INTO Categories (Nom, Description, TauxTVA) VALUES ('Saurisserie', 'produit de la mer', 6)
 
@@ -68,3 +62,5 @@ INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUE
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ('Lego Ninjago', 'Jouet de construction Lego Ninjago',10, 25, 'https://m.media-amazon.com/images/I/815BBPcE92L.jpg', 8)
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ( 'Pulzze Disney', 'Disney princesse Disney la reine des neige',4, 10,'https://data.puzzle.be/ravensburger.5/2-puzzles-disney-la-reine-des-neiges-puzzle-24-pieces.46917-1.fs.jpg', 8)
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ( 'Pulzze Disney', 'Disney princesse Disney la reine des neige',4, 10,'https://data.puzzle.be/ravensburger.5/2-puzzles-disney-la-reine-des-neiges-puzzle-24-pieces.46917-1.fs.jpg', 8)
+
+
