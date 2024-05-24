@@ -52,7 +52,7 @@ namespace Labo_Sannin_API.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                _userService.Register(form.Nom,form.Prenom,form.Email,form.Password,form.Telephone,form.Adresse);
+                _userService.Register(form.Nom, form.Prenom, form.Email, form.Password, form.Telephone, form.Adresse);
                 return Ok();
             }
             catch (Exception ex)
@@ -66,9 +66,9 @@ namespace Labo_Sannin_API.Controllers
         /// <param name="form"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost("update")]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Update([FromBody]UserUpdateForm form,[FromRoute] int id) 
+        public IActionResult Update([FromBody] UserUpdateForm form, [FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest();
             try

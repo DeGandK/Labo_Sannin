@@ -195,10 +195,9 @@ namespace Labo_DAL.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE [User] SET Email = @email, Telephone = @tel, Adresse = @adresse WHERE UserID = @id";
+                    command.CommandText = "UPDATE [User] SET Telephone = @tel, Adresse = @adresse WHERE UserID = @id";
 
                     command.Parameters.AddWithValue("id", user.UserID);
-                    command.Parameters.AddWithValue("email", user.Email);
                     command.Parameters.AddWithValue("tel", user.Telephone);
                     command.Parameters.AddWithValue("adresse", user.Adresse);
 
