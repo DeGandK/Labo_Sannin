@@ -9,6 +9,15 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+CREATE TRIGGER [Trigger_ChangementStatut_RetirerProduit]
+ON Product
+INSTEAD OF DELETE
+AS BEGIN
+UPDATE Product 
+SET IsActif = 0 
+FROM deleted 
+WHERE ProductID = (SELECT ProductID FROM deleted);
+END;
 
 INSERT INTO Categories (Nom, Description, TauxTVA) VALUES ('Saurisserie', 'produit de la mer', 6)
 
