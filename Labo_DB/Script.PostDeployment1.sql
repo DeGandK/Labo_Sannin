@@ -8,16 +8,10 @@ Modèle de script de post-déploiement
  Exemple :      :setvar TableName MyTable							
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
-*/
-CREATE TRIGGER [Trigger_ChangementStatut_RetirerProduit]
-ON Product
-INSTEAD OF DELETE
-AS BEGIN
-UPDATE p
-SET p.IsActif = 0 
-FROM Product p
-WHERE p.ProductID = (SELECT d.ProductID FROM deleted d);
+CREATE TRIGGER [Trigger_ChangementStatut_RetirerProduit] ON Product INSTEAD OF DELETE AS BEGIN UPDATE p SET p.IsActif = 0 FROM Product p WHERE p.ProductID = (SELECT d.ProductID FROM deleted d);
 END;
+
+*/
 
 INSERT INTO Categories (Nom, Description, TauxTVA) VALUES ('Saurisserie', 'produit de la mer', 6)
 
@@ -41,7 +35,7 @@ INSERT INTO Product (Nom, Description, Stock, PrixHTVA, Image, CategorieID) VALU
 INSERT INTO Product (Nom, Description, Stock, PrixHTVA, Image, CategorieID) VALUES ('Noix de St-Jacques', 'Petites noix de st-jacques', 5, 9.99,'https://www.alexya.fr/wp-content/uploads/2016/09/Recette-noix-de-saint-jacques-13.jpg',1)
 
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ('Entrecote', 'Viande de boeuf maturée 14 jours',5, 18, 'https://difalux.be/wp-content/uploads/2021/02/2278-entrecote-rubia-maturee-4-br.jpg',2)
-INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES('Chipolata', 'Fine saucisse de porc avec des herbes et épices',42, 5, 'https://www.papillesetpupilles.fr/wp-content/uploads/2022/01/Chipolata-Dgraph88-CC0-Pixabay-.jpg',2)
+INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES('Chipolata', 'Fine saucisse de porc avec des herbes et épices',42, 5, 'https://www.shutterstock.com/image-photo/sausages-600nw-144948325.jpg',2)
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES('Cotelette d''agneau', 'Petite cote d’agneau d’Ecosse',12, 15, 'https://www.boucherie-gillotjohn.fr/wp-content/uploads/2018/03/VISUELS-COTELETTES.jpg', 2)
 
 INSERT INTO Product (Nom, Description,Stock, PrixHTVA, Image, CategorieID) VALUES ('Bacon', 'tranche de poitrine de porc',6000, 3.50, 'https://lovefoodhatewaste.ca/wp-content/uploads/2021/03/bacon-1024x709.jpg',3)

@@ -15,5 +15,6 @@ namespace Labo_Domain.Models
         public decimal PrixHTVA { get; set; }
         public string Image {  get; set; }
         public int CategorieID { get; set; }
+        public bool IsActif {  get; set; }
     }
 }

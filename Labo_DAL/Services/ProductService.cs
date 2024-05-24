@@ -38,7 +38,8 @@ namespace Labo_DAL.Services
                 Image = (string)reader["Image"],
                 PrixHTVA = (decimal)reader["PrixHTVA"],
                 Stock = (int)reader["Stock"],
-                CategorieID = (int)reader["CategorieID"]
+                CategorieID = (int)reader["CategorieID"],
+                IsActif = (bool)reader["IsActif"]
             };
         }
 
