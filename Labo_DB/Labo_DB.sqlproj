@@ -63,6 +63,7 @@
     <Build Include="Command.sql" />
     <Build Include="CommandRow.sql" />
     <Build Include="Categories.sql" />
+    <Build Include="Trigger1.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />
