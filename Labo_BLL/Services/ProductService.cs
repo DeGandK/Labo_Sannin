@@ -49,6 +49,7 @@ namespace Labo_BLL.Services
             cp.Description = p.Description;
             cp.PrixHTVA = p.PrixHTVA;
             cp.Image = p.Image;
+            cp.Stock = p.Stock;
             cp.CategorieID= p.CategorieID;
             cp.IsActif = p.IsActif;
             cp.categorie = _categoriesRepo.GetById(p.CategorieID);

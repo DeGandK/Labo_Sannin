@@ -22,14 +22,14 @@ namespace Labo_Sannin_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //[Authorize("isConnectedPolicy")]
-        [HttpGet]
+        [Authorize("isConnectedPolicy")]
+        [HttpGet("{CommandID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetByCommandId(int id)
+        public IActionResult GetByCommandId(int CommandId)
         {
             try
             {
-            return Ok(_commandRowService.GetByCommandId(id));
+            return Ok(_commandRowService.GetByCommandId(CommandId));
             }
 
             catch (Exception ex)
