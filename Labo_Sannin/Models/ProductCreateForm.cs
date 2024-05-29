@@ -16,6 +16,7 @@ namespace Labo_Sannin_API.Models
         public string Image {  get; set; }
         [Required]
         public int CategorieID { get; set; }
+        public bool IsActif {  get; set; }
 
 
     }

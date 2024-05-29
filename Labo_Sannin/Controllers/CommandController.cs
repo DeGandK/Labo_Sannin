@@ -110,5 +110,21 @@ namespace Labo_Sannin_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize("adminPolicy")]
+        [HttpPut("{CommandID}")]
+        public IActionResult ValiderCommande(int CommandId) 
+        {
+            try
+            {
+                _commandService.ValiderCommande(CommandId);
+                return Ok();
+            }
+            catch (Exception ex )
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

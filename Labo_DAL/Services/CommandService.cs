@@ -119,8 +119,8 @@ namespace Labo_DAL.Services
         {
             using (SqlCommand cmd = _connection.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Command SET IsPaid = 1 WHERE CommandId = @CommandId";
-                cmd.Parameters.AddWithValue("CommandId", CommandId);
+                cmd.CommandText = "UPDATE Command SET IsPaid = 1 WHERE CommandID = @CommandId";
+                cmd.Parameters.AddWithValue("CommandID", CommandId);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
                 _connection.Close();
